@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repo Roaster</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+
+</head>
+
+<body>
+   <main>
+     <section class="hero">
+        <h1>🔥 REPO ROASTER</h1>
+
+        <p>Paste a Github repo URL. GET destyroyed.</p>
+
+        <input
+        type="text"
+        id="repo-url"
+        placeholder="https://github.com/owner/repository"
+        >
+
+        <button id="roast-btn">
+            Roast It
+        </button>
+     </section>
+     <section id="result">
+     </section>
+   </main>
+</body>
+</html>
