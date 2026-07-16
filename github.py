@@ -15,3 +15,14 @@ def fetch_repo_data(url):
 
 print(fetch_repo_data("https://github.com/torvalds/linux"))
 
+print(repo["name"])repo = fetch_repo_data("https://github.com/torvalds/linux")
+print(repo["discription"])
+print(repo["languages"])
+print(repo["stargazers_count"])
+print(repo["forks_count"])
+print(repo["owner"]["login"])
+
+repo = fetch_repo_data("https://github.com/torvalds/linux")
+
+print(repo["name"])
+
