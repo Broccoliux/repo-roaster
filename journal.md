@@ -17,3 +17,8 @@ just tested everything is working very well now
 
 something happed
 ![alt text](image-1.png)
+=======
+
+something is not going well
+
+>>>>>>> 3bbfbeaf9394065d4aa43d3fef51374052104c83
