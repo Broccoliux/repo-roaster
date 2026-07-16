@@ -10,3 +10,7 @@ i have made tye files now making the virtual env.
 the virtual env is now set. now i haev to install the needed libs and pakages
 
 ![alt text](image.png)
+
+
+something is not going well
+
