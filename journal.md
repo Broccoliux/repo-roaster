@@ -21,4 +21,16 @@ something happed
 
 something is not going well
 
->>>>>>> 3bbfbeaf9394065d4aa43d3fef51374052104c83
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0dca3be2-1ea7-4dea-a7a7-d1eb38b869a6" />
+
+i did it
+
+<img width="678" height="703" alt="image" src="https://github.com/user-attachments/assets/9b27379d-201e-4327-825c-04b8b3932832" />
+
+
+ohh my yessssssss
+
+i am learning
+
+<img width="1366" height="735" alt="image" src="https://github.com/user-attachments/assets/02a261eb-8000-4d8d-9d2b-746430283b20" />
+
