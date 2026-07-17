@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-
+from github import fetch_repo_data
 
 
 app = Flask(__name__)
@@ -14,14 +14,19 @@ def roast():
     data = request.get_json()
 
     repo_url = data.get("url", "")
+    repo= fetch_repo_data(repo_url)
 
     return jsonify({
         "success": True,
-        "message": "Backend received the URL!",
-        "url": repo_url
+        "repo": repo
+        
     })
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
 
