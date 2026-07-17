@@ -34,3 +34,4 @@ i am learning
 
 <img width="1366" height="735" alt="image" src="https://github.com/user-attachments/assets/02a261eb-8000-4d8d-9d2b-746430283b20" />
 
+i was coding and tesing and suddenly hit the the wall of api limit reached.so now gonna make own api, that will be mroe relibal.
