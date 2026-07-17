@@ -1,3 +1,9 @@
+from dotenv import load_dotenv
+import os 
+load_dotenv()
+
+TOKEN = os.getenv("GITHUB_TOKEN")
+
 import requests
 from urllib.parse import urlparse
 
@@ -9,11 +15,18 @@ def extract_repo_info(url):
 def fetch_repo_data(url):
     owner, repo = extract_repo_info(url)
     api_url = f"https://api.github.com/repos/{owner}/{repo}"
-    response = requests.get(api_url)
+    
+    headers = {
+        "Authorization": f"token {TOKEN}"
+    }
+    response = requests.get(api_url, headers=headers)
+
     data = response.json()
     if response.status_code !=200:
         print(data)
         return None
+    
+
     repo_info = {
         "name": (data["name"]),
         "description": (data["description"]),
