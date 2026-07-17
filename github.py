@@ -11,18 +11,21 @@ def fetch_repo_data(url):
     api_url = f"https://api.github.com/repos/{owner}/{repo}"
     response = requests.get(api_url)
     data = response.json()
-    return data
+    repo_info = {
+        "name": data["name"],
+    }
+    return repo_info
 
-print(fetch_repo_data("https://github.com/torvalds/linux"))
 
-print(repo["name"])repo = fetch_repo_data("https://github.com/torvalds/linux")
-print(repo["discription"])
-print(repo["languages"])
+repo = fetch_repo_data("https://github.com/torvalds/linux")
+
+
+print(repo["name"])
+print(repo["description"])
+print(repo["language"])
 print(repo["stargazers_count"])
 print(repo["forks_count"])
 print(repo["owner"]["login"])
-
-repo = fetch_repo_data("https://github.com/torvalds/linux")
 
 print(repo["name"])
 
