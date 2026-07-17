@@ -80,4 +80,6 @@ cuz the repo is taking too long to be loned soo i need to find solution to this,
 soo this is it for today, will start working from tmro i dont have time to waste. i need to get to the SIN no mattter, what. 
 
 i have chenged the clone process now it will only clone the depth 1 means only lates commits. but still for BIG repo like [text](https://github.com/different-ai/openwork) it is taking soo much time.
+
+idk how i am gonna do it ut i will definatly wont leave it like this, i will make it work in secs, or ms, but idk how, or if this is possible or not. 
 soo byeeee. for today. 
