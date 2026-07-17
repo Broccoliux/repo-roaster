@@ -53,3 +53,30 @@ i added the new code but it is not wokring idk why, need to fix, i think i am fo
 bro idk but i am stuck
 
 bruh my code as alr, but i accidently pused the.env to github with api. and github revoked that api, thats all
+
+now all the main things work check the list below.
+
+✅ Flask backend
+✅ GitHub API
+✅ Token auth
+✅ Input validation
+✅ Error handling
+✅ Frontend displays repo info
+✅ Debug code removed
+
+next gonna make the thing, where the repo will be cloned for a while and this will help to read the actuall matirial in the repo, like
+
+ main.py
+package.json
+README.md
+app.js
+
+idk why test.py is taking too long just to colne a small repo/
+
+ohh the reason wwas that the repo i was trying to clone was soo big soo it took soo much time, then triedthe hello world repo it was cloned instantly, it showd me HELLO WORLD init, means it is working the cloning.
+
+cuz the repo is taking too long to be loned soo i need to find solution to this, cuzz this is too waste of time.
+
+soo this is it for today, will start working from tmro i dont have time to waste. i need to get to the SIN no mattter, what. 
+
+soo byeeee. for today. 
