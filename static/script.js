@@ -1,5 +1,7 @@
 const input = document.getElementById("repo-url");
 const button = document.getElementById("roast-btn");
+const result = document.getElementByid("result");
+
 
 button.addEventListener("click", async () => {
     const url = input.value.trim();
