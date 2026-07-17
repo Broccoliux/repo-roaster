@@ -12,7 +12,9 @@ def fetch_repo_data(url):
     response = requests.get(api_url)
     data = response.json()
     repo_info = {
-        "name": data["name"],
+        "name": (data["name"]),
+        "description": (data["description"])
+        ""
     }
     return repo_info
 
