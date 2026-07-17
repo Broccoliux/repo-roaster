@@ -16,8 +16,9 @@ def fetch_repo_data(url):
         "description": (data["description"]),
         "language": (data["language"]),
         "stars": (data["stargazers_count"]),
-        "forks_count": (data["forks_count"]),
-        "owner""login": (data["owner"]["login"])
+        "forks": (data["forks_count"]),
+        "owner": (data["owner"]),
+        "login": (data["owner"]),
     }
     return repo_info
 
@@ -25,12 +26,4 @@ def fetch_repo_data(url):
 repo = fetch_repo_data("https://github.com/torvalds/linux")
 
 
-print(repo["name"])
-print(repo["description"])
-print(repo["language"])
-print(repo["stargazers_count"])
-print(repo["forks_count"])
-print(repo["owner"]["login"])
-
-print(repo["name"])
 
