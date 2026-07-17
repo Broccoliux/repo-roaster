@@ -15,13 +15,13 @@ def roast():
 
     repo_url = data.get("url", "")
     repo= fetch_repo_data(repo_url)
+    print(repo_url)
 
     return jsonify({
         "success": True,
         "repo": repo
         
     })
-
 
 if __name__ == "__main__":
     app.run(debug=True)
