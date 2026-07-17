@@ -35,3 +35,14 @@ i am learning
 <img width="1366" height="735" alt="image" src="https://github.com/user-attachments/assets/02a261eb-8000-4d8d-9d2b-746430283b20" />
 
 i was coding and tesing and suddenly hit the the wall of api limit reached.so now gonna make own api, that will be mroe relibal.
+
+i am dumb i am not gonna make a new api but will be using PAT.
+got the api, i hope now i dont have to take care for apis.
+
+i have fixed the part of code that were not respondiong. i hope the will work and gonna test 10-15 repos.
+
+oky so the all repos are woking fine and the data is getting fetched.
+
+made the .env to store the API keys.
+
+ohh my yess it working yyayayyayyayayayayyayayayyayayay
