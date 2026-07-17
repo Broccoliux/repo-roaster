@@ -17,8 +17,7 @@ def fetch_repo_data(url):
         "language": (data["language"]),
         "stars": (data["stargazers_count"]),
         "forks": (data["forks_count"]),
-        "owner": (data["owner"]),
-        "login": (data["owner"]),
+        "owner": data["owner"]["login"],
     }
     return repo_info
 
