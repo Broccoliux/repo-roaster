@@ -46,3 +46,10 @@ oky so the all repos are woking fine and the data is getting fetched.
 made the .env to store the API keys.
 
 ohh my yess it working yyayayyayyayayayayyayayayyayayay
+
+
+i added the new code but it is not wokring idk why, need to fix, i think i am forgeting something, i take a break for 2hrs, i think i forgot, lol, im dumb
+
+bro idk but i am stuck
+
+bruh my code as alr, but i accidently pused the.env to github with api. and github revoked that api, thats all

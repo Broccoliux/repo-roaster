@@ -22,8 +22,8 @@ def fetch_repo_data(url):
     response = requests.get(api_url, headers=headers)
 
     data = response.json()
+    
     if response.status_code !=200:
-        print(data)
         return None
     
 

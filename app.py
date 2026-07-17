@@ -14,13 +14,18 @@ def roast():
     data = request.get_json()
 
     repo_url = data.get("url", "")
-    repo= fetch_repo_data(repo_url)
-    print(repo_url)
+
+    repo = fetch_repo_data(repo_url)
+
+    if repo is None:
+        return jsonify({
+            "success": False,
+            "message": "Repository not found."
+    }), 404
 
     return jsonify({
-        "success": True,
+        "success" : True,
         "repo": repo
-        
     })
 
 
