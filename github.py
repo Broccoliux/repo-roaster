@@ -13,8 +13,11 @@ def fetch_repo_data(url):
     data = response.json()
     repo_info = {
         "name": (data["name"]),
-        "description": (data["description"])
-        ""
+        "description": (data["description"]),
+        "language": (data["language"]),
+        "stars": (data["stargazers_count"]),
+        "forks_count": (data["forks_count"]),
+        "owner""login": (data["owner"]["login"])
     }
     return repo_info
 
