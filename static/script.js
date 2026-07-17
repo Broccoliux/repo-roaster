@@ -1,6 +1,6 @@
 const input = document.getElementById("repo-url");
 const button = document.getElementById("roast-btn");
-const result = document.getElementByid("result");
+const result = document.getElementById("result");
 
 
 button.addEventListener("click", async () => {
@@ -28,9 +28,13 @@ button.addEventListener("click", async () => {
 
     const data = await response.json();
 
+    console.log("Reached here");
+    console.log(data);
+
     result.innerHTML = `
-    <h2>${data.repo.name}</h2>
-    `;
+        <h2>${data.repo.name}</h2>
+        `;
+
 });
 
 function isValidGitHubUrl(url) {
