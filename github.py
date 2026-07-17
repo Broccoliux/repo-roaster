@@ -11,6 +11,9 @@ def fetch_repo_data(url):
     api_url = f"https://api.github.com/repos/{owner}/{repo}"
     response = requests.get(api_url)
     data = response.json()
+    if response.status_code !=200:
+        print(data)
+        return None
     repo_info = {
         "name": (data["name"]),
         "description": (data["description"]),
@@ -21,8 +24,6 @@ def fetch_repo_data(url):
     }
     return repo_info
 
-
-repo = fetch_repo_data("https://github.com/torvalds/linux")
 
 
 
