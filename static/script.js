@@ -28,8 +28,10 @@ button.addEventListener("click", async () => {
 
     const data = await response.json();
 
-    console.log(data);
-});
+    result.innerHTML = `
+    <h2>${data.repo.name}</h2>
+    `;
+})
 
 function isValidGitHubUrl(url) {
     const pattern = /^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/;
