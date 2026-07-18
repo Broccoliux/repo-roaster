@@ -75,12 +75,11 @@ def fetch_file_content(url, file_path):
 def get_important_files(tree):
     important = []
 
-    extention = (
-
-        ".py", ".js", ".ts", ".jsx", ".tsx",
-        ".java", ".cpp", ".c", ".cs", ".go",
-        ".rs", ".php", ".html", ".css"
-    )
+    extensions = (
+    ".py", ".js", ".ts", ".jsx", ".tsx",
+    ".java", ".cpp", ".c", ".cs", ".go",
+    ".rs", ".php", ".html", ".css"
+)
 
     for file in tree:
         path = file["path"]
@@ -95,3 +94,23 @@ def get_important_files(tree):
             important.append(path)
 
     return important[:20]
+
+def build_repo_context(url):
+    tree = fetch_repo_tree(url)
+
+
+    if tree is None:
+        return None
+    
+    files = get_important_files(tree)
+
+    context = ""
+
+    for file in files:
+        content = fetch_file_content(url, file)
+
+        if content:
+            context += f"\n\n==== {file} ====\n"
+            context += content
+
+    return context
