@@ -898,3 +898,5 @@ Naming this "Dragonfly" is an insult to insects; "Mosquito with a short circuit"
 
 Delete this repository before the fire department does.
 ```
+
+<img width="1366" height="725" alt="image" src="https://github.com/user-attachments/assets/d301327f-ac03-47ed-92ba-7a495522b353" />
