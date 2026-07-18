@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+import base64
 import os 
 load_dotenv()
 
@@ -37,6 +38,20 @@ def fetch_repo_data(url):
     }
     return repo_info
 
+def fetch_file_content(url, file_path):
+    owner, repo = extract_repo_info(url)
 
+    api_url = f"https://api.github.com/repos/{owner}/{repo}/contents/{file_path}"
 
+    headers = {
+        "Authorization": f"token  {TOKEN}"
+    }
 
+    response = requests.get(api_url, headers=headers)
+
+    if response.status_code !=200:
+        return None
+    
+    data = response.json()
+
+    return base64.b64decode(data["content"]).decode("utf-8", errors="ignore")
