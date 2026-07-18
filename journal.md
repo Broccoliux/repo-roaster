@@ -507,3 +507,7 @@ its is gving the files data
 next i ma going to connect the LLM
 
 but even before that we need to test this pipeline in our local host server.
+
+it works in local host too
+
+<img width="1366" height="725" alt="image" src="https://github.com/user-attachments/assets/3f9e25f9-1e61-49a1-9cf8-1e6d029fe0d7" />
