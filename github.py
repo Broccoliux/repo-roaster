@@ -75,25 +75,79 @@ def fetch_file_content(url, file_path):
 def get_important_files(tree):
     important = []
 
+    priority_files = {
+        "readme.md",
+        "package.json",
+        "requirments.txt",
+        "app.py",
+        "main.py",
+        "manage.py",
+        "index.js",
+        "server.js",
+        "github.py",
+    }
+
+    priority_folder = (
+        "src/",
+        "templates/",
+        "static/",
+        "components/",
+        "lib/",
+        "page/",
+    )
+
     extensions = (
-    ".py", ".js", ".ts", ".jsx", ".tsx",
-    ".java", ".cpp", ".c", ".cs", ".go",
-    ".rs", ".php", ".html", ".css"
-)
+        ".py",
+        ".js",
+        ".ts",
+        ".jsx",
+        ".tsx",
+        ".html",
+        ".css",
+        ".java",
+        ".cpp",
+        ".c",
+        ".cs",
+        ".go",
+        ".rs"
+        ".php"
+    )
+
+    ignored = (
+        ".git/",
+        "node_modules/",
+        "__pycache__/",
+        "venv",
+        ".venv/",
+        "dist/",
+        "build/",
+        ".next/",
+        "idea/",
+        "vscode/",
+    )
 
     for file in tree:
         path = file["path"]
 
+        if any(path.startswith(folder) for folder in ignored):
+            continue 
+        
+        filename = path.split("/")[-1].lower()
+
+        if filename.startswith("test"):
+            continue
+
+        if filename == "cloner.py":
+            continue
+
         if (
-            path.lower() == "readme.md"
-            or path.lower() == "package.json"
-            or path.lower() == "requirements.txt"
-            or path.lower() == "pyproject.toml"
+            filename in priority_files
+            or path.startswith(priority_folder)
             or path.endswith(extensions)
         ):
             important.append(path)
-
-    return important[:20]
+    
+    return important
 
 def build_repo_context(url):
     tree = fetch_repo_tree(url)
@@ -114,3 +168,26 @@ def build_repo_context(url):
             context += content
 
     return context
+
+
+def build_repo_context(url):
+    tree = fetch_repo_tree(url)
+    
+    if tree is None:
+        return None
+    
+    important_files = get_important_files(tree)
+
+    context = ""
+
+    for file in important_files:
+        content = fetch_file_content(url, file)
+
+        if content is None:
+            continue
+
+        context += f"\n\n===== {file} =====\n"
+        context += content[:4000]
+
+    return context
+
