@@ -1,5 +1,8 @@
-from cloner import clone_repo
+from github import fetch_file_content
 
-path = clone_repo("https://github.com/different-ai/openwork")
+content = fetch_file_content(
+    "https://github.com/octocat/Hello-World",
+    "README"
+)
 
-print(path)
+print(content)
