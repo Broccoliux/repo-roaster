@@ -766,7 +766,7 @@ Let's talk about `v_beta_hygiene_fix.py`.
 ```python
 # Operates on .kicad_sch files in BINARY MODE. Touches only the bytes inside
 # property values; never modifies whitespace...
-```
+
 * **What in the regex-hell is this?** You wrote a custom Python script to do *surgical binary-level string replacements* on KiCad schematic files because your component footprint naming conventions were so messed up.
 * Instead of just using KiCad’s built-in, GUI-based bulk footprint association tool like a civilized human, you decided to write a Python script that runs raw regex replacements on raw schematic bytes. One wrong character match and your entire schematic is corrupted beyond repair. This isn't "hygiene," this is playing Russian roulette with your hardware files.
 
@@ -791,7 +791,6 @@ This isn’t a flight controller repository; this is a **KiCad shopping list**. 
 You designed a custom board, bought the components, 3D printed a frame, and set up a GitHub repo, all before checking if the firmware would even compile or flash. 
 
 You built a **$300 simulator of a drone** that exists only in Fusion 360 and your dreams. Clean up your folder structure, delete the stolen sub-repos, learn how to use KiCad's footprint editor instead of writing terrifying Python scripts, and please... buy a smoke stopper before you plug this thing in
-
 ```
 
 going to take a breat for 2hrs to recahrg.
