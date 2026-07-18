@@ -143,3 +143,367 @@ Hello World!
 Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
 
 ```
+
+rn i am working on new thing, that will might speed up the fetch but i am not sure.
+
+ahh bro i am stuck
+
+
+
+ohhhhhhhhhhh yesssssssssssssssshhhhhhhhhhhhh
+
+```
+
+Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
+$ python test.py
+.gitignore
+.vscode
+.vscode/settings.json
+LICENSE
+README.md
+__pycache__
+__pycache__/github.cpython-313.pyc
+app.py
+cloner.py
+github.py
+journal.md
+requirements.txt
+roaster.py
+static
+static/script.js
+static/style.css
+templates
+templates/index.html
+terminal-wakatime.ps1
+test.py
+(venv) 
+Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
+```
+
+
+ohh my yesss we rolllin
+
+rn i am trying to store the fetch the files data no just the name. 
+
+ohh yeaaaaaa i did it.
+
+```
+
+ python test.py
+
+
+==== README.md ====
+# repo-roaster
+
+==== app.py ====
+from flask import Flask, render_template, request, jsonify
+from github import fetch_repo_data
+
+
+app = Flask(__name__)
+
+@app.route("/")
+
+def home():
+    return render_template("index.html")
+
+@app.route("/roast", methods=["POST"])
+def roast():
+    data = request.get_json()
+
+    repo_url = data.get("url", "")
+
+    repo = fetch_repo_data(repo_url)
+
+    if repo is None:
+        return jsonify({
+            "success": False,
+            "message": "Repository not found."
+    }), 404
+
+    return jsonify({
+        "success" : True,
+        "repo": repo
+    })
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+==== cloner.py ====
+import tempfile
+
+from git import Repo
+
+def clone_repo(repo_url):
+    temp_dir = tempfile.mkdtemp()
+
+    Repo.clone_from(repo_url, temp_dir, depth=1)
+
+    return temp_dir
+
+
+==== github.py ====
+from dotenv import load_dotenv
+import base64
+import os 
+load_dotenv()
+
+TOKEN = os.getenv("GITHUB_TOKEN")
+
+import requests
+from urllib.parse import urlparse
+
+def extract_repo_info(url):
+    parsed = urlparse(url)
+    parts = parsed.path.strip("/").split("/")
+    return parts [0],parts [1]
+
+def fetch_repo_data(url):
+    owner, repo = extract_repo_info(url)
+    api_url = f"https://api.github.com/repos/{owner}/{repo}"
+    
+    headers = {
+        "Authorization": f"token {TOKEN}"
+    }
+    response = requests.get(api_url, headers=headers)
+
+    data = response.json()
+    
+    if response.status_code !=200:
+        return None
+    
+
+    repo_info = {
+        "name": (data["name"]),
+        "description": (data["description"]),
+        "language": (data["language"]),
+        "stars": (data["stargazers_count"]),
+        "forks": (data["forks_count"]),
+        "owner": data["owner"]["login"],
+    }
+    return repo_info
+
+def fetch_repo_tree(url):
+    owner, repo = extract_repo_info(url)
+
+    api_url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/HEAD?recursive=1"
+
+    headers = {
+        "Authorization": f"token {TOKEN}"
+    }
+
+    response = requests.get(api_url, headers=headers)
+
+    if response.status_code != 200:
+        return None
+
+    return response.json()["tree"]
+
+def fetch_file_content(url, file_path):
+    owner, repo = extract_repo_info(url)
+
+    api_url = f"https://api.github.com/repos/{owner}/{repo}/contents/{file_path}"
+
+    headers = {
+        "Authorization": f"token {TOKEN}"
+    }
+
+    response = requests.get(api_url, headers=headers)
+
+    if response.status_code !=200:
+        return None
+    
+    data = response.json()
+
+    return base64.b64decode(data["content"]).decode("utf-8", errors="ignore")
+
+def get_important_files(tree):
+    important = []
+
+    extention = (
+
+        ".py", ".js", ".ts", ".jsx", ".tsx",
+        ".java", ".cpp", ".c", ".cs", ".go",
+        ".rs", ".php", ".html", ".css"
+    )
+
+    for file in tree:
+        path = file["path"]
+
+        if (
+            path.lower() == "readme.md"
+            or path.lower() == "package.json"
+            or path.lower() == "requirements.txt"
+            or path.lower() == "pyproject.toml"
+            or path.endswith(extensions)
+        ):
+            important.append(path)
+
+    return important[:20]
+
+==== requirements.txt ====
+blinker==1.9.0
+certifi==2026.6.17
+charset-normalizer==3.4.9
+click==8.4.2
+colorama==0.4.6
+Flask==3.1.3
+gunicorn==26.0.0
+idna==3.18
+itsdangerous==2.2.0
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+packaging==26.2
+python-dotenv==1.2.2
+requests==2.34.2
+urllib3==2.7.0
+Werkzeug==3.1.8
+
+
+==== static/script.js ====
+const input = document.getElementById("repo-url");
+const button = document.getElementById("roast-btn");
+const result = document.getElementById("result");
+
+console.log("NEW SCRIPT LOADED");
+
+button.addEventListener("click", async () => {
+
+    const url = input.value.trim();
+
+
+    if (url === "") {
+        alert("empty");
+        return;
+    }
+
+    if (!isValidGitHubUrl(url)) {
+        alert("invalid");
+        return;
+    }
+
+    const response = await fetch("/roast", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            url: url
+        })
+    });
+
+    const data = await response.json();
+
+    if (!data.success) {
+        result.innerHTML = `<h2>${data.message}</h2>`;
+        return;
+    }
+
+    result.innerHTML = `
+        <h2>📦 ${data.repo.name}</h2>
+        <p>👤 ${data.repo.owner}</p>
+        <p>⭐ ${data.repo.stars}</p>
+        <p>🍴 ${data.repo.forks}</p>
+        <p>💻 ${data.repo.language || "Unknown"}</p>
+        <p>📝 ${data.repo.description || "No description provided."}</p>
+    `;
+
+}); 
+
+function isValidGitHubUrl(url) {
+    const pattern = /^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/;
+    return pattern.test(url);
+}
+
+==== static/style.css ====
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0a0a0a;
+     color: white;
+
+}
+
+main{
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    padding-top: 80px;
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+input{
+    padding: 14px;
+    font-size: 16px;
+}
+
+button{
+    width: 130px;
+    padding: 15px;
+    cursor: progress;
+
+}
+
+==== templates/index.html ====
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repo Roaster</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+
+<body>
+   <main>
+     <section class="hero">
+        <h1>🔥 REPO ROASTER</h1>
+
+        <p>Paste a Github repo URL. GET destyroyed.</p>
+
+        <input
+        type="text"
+        id="repo-url"
+        placeholder="https://github.com/owner/repository"
+        >
+
+        <button id="roast-btn">
+            Roast it
+        </button>
+     </section>
+     <section id="result">
+     </section>
+   </main>
+</body>
+</html>
+
+
+==== test.py ====
+from github import fetch_file_content
+
+content = fetch_file_content(
+    "https://github.com/octocat/Hello-World",
+    "README"
+)
+
+print(content)
+(venv) 
+Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
+$ 
+
+```
+
+its is gving the files data
+
+next i ma going to connect the LLM
+
+but even before that we need to test this pipeline in our local host server.
