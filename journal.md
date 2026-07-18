@@ -83,3 +83,63 @@ i have chenged the clone process now it will only clone the depth 1 means only l
 
 idk how i am gonna do it ut i will definatly wont leave it like this, i will make it work in secs, or ms, but idk how, or if this is possible or not. 
 soo byeeee. for today. 
+
+-----------------------------
+
+ 18/7/2025
+
+------------------------------
+
+
+today gonna make the AI start roasting
+
+but even before that we are gonna find the solution for the late cloning, id this very bad and will give bad impresion.
+
+i am going with completely new appproch where, i will not clone the repo instead we will go with GitHub APi. i have 5000 requeest per hr so it will be enough, 
+
+```
+For example, if one roast uses:
+
+1 request → repo info
+1 request → file tree
+15 requests → important files
+
+= 17 requests per roast
+
+So:
+
+5000 / 17 ≈ 294 full roasts per hour
+
+```
+
+The planed Architecture
+
+User repo URL
+      │
+      ▼
+Github API
+      │
+      ├── Repo info
+      ├── File tree
+      ├── readme
+      ├── package.json
+      ├── requirment.txt
+      ├── Main spurce file
+      ▼
+ AI
+      ▼
+Roast Roast Roast
+
+
+
+**OH MY YESS**
+
+```
+Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
+$ python test.py
+Hello World!
+
+(venv) 
+Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
+
+```
