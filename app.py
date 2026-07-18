@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from github import fetch_repo_data, build_repo_context
 from roaster import roast_repo
+import time
 
 
 app = Flask(__name__)
@@ -16,19 +17,23 @@ def roast():
 
     repo_url = data.get("url", "")
 
+    start = time.time()
     repo = fetch_repo_data(repo_url)
-
-    context = build_repo_context(repo_url)
-    roast = roast_repo(context)
-    print("=" * 60)
-    print("context lenght:" , len(context))
-    print("="* 60)
+    print("Repo:", time.time() - start)
 
     if repo is None:
         return jsonify({
             "success": False,
             "message": "Repository not found."
     }), 404
+
+    start = time.time()
+    context = build_repo_context(repo_url)
+    print("context:", time.time() - start)
+    start = time.time()
+    roast = roast_repo(context)
+    print("Gemini:", time.time() - start)
+
 
     return jsonify({
         "success" : True,
