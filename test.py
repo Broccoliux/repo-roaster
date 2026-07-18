@@ -1,8 +1,5 @@
-from github import fetch_file_content
+from github import build_repo_context
 
-content = fetch_file_content(
-    "https://github.com/octocat/Hello-World",
-    "README"
-)
+context = build_repo_context("https://github.com/Broccoliux/repo-roaster")
 
-print(content)
+print(context)
