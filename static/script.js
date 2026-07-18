@@ -31,6 +31,8 @@ button.addEventListener("click", async () => {
 
     const data = await response.json();
 
+    console.log(data.context);
+
     if (!data.success) {
         result.innerHTML = `<h2>${data.message}</h2>`;
         return;
@@ -42,7 +44,8 @@ button.addEventListener("click", async () => {
         <p>⭐ ${data.repo.stars}</p>
         <p>🍴 ${data.repo.forks}</p>
         <p>💻 ${data.repo.language || "Unknown"}</p>
-        <p>📝 ${data.repo.description || "No description provided."}</p>
+        <hr>
+        <pre>${data.roast}</pre>
     `;
 
 }); 
