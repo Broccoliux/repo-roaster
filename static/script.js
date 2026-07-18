@@ -37,6 +37,7 @@ button.addEventListener("click", async () => {
         result.innerHTML = `<h2>${data.message}</h2>`;
         return;
     }
+    
 
     result.innerHTML = `
         <h2>📦 ${data.repo.name}</h2>
