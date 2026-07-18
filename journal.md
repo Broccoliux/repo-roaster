@@ -55,7 +55,7 @@ bro idk but i am stuck
 bruh my code as alr, but i accidently pused the.env to github with api. and github revoked that api, thats all
 
 now all the main things work check the list below.
-
+```
 ✅ Flask backend
 ✅ GitHub API
 ✅ Token auth
@@ -63,7 +63,7 @@ now all the main things work check the list below.
 ✅ Error handling
 ✅ Frontend displays repo info
 ✅ Debug code removed
-
+```
 next gonna make the thing, where the repo will be cloned for a while and this will help to read the actuall matirial in the repo, like
 
  main.py
@@ -507,3 +507,296 @@ its is gving the files data
 next i ma going to connect the LLM
 
 but even before that we need to test this pipeline in our local host server.
+
+rn its is taking a lil bit time, and i did not find the way to make this happen fast. even AI didnt helped me.
+
+
+not  a good sign it the context must be more then 10K
+
+```
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 102-280-820
+127.0.0.1 - - [18/Jul/2026 11:11:32] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jul/2026 11:11:33] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+127.0.0.1 - - [18/Jul/2026 11:11:33] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [18/Jul/2026 11:11:33] "GET /static/script.js HTTP/1.1" 304 -
+127.0.0.1 - - [18/Jul/2026 11:11:38] "GET /favicon.ico HTTP/1.1" 404 -
+============================================================
+context lenght: 6612
+============================================================
+127.0.0.1 - - [18/Jul/2026 11:12:05] "POST /roast HTTP/1.1" 200 -
+```
+
+let me check the total context lenght for my repo. then it will tell us if oour repo is small or the problem is some where else
+
+
+my test repo have only 
+TOTAL: 6215
+test.py 129
+
+TOTAL: 6344
+
+
+going great do far
+
+i aws tesing with my repo, now i will test it with the other lenghty repos.
+
+working file with other repos too just taking a bit more time
+
+```
+$ python test.py
+README.md 4991
+
+TOTAL: 4991
+resources/symbols/AT7456E/Altair/Readme.html 285
+
+TOTAL: 5276
+resources/symbols/AT7456E/Altium/Readme.html 326
+
+TOTAL: 5602
+resources/symbols/AT7456E/DEHDL/at7456e/sym_1/symbol.css 3718
+
+TOTAL: 9320
+resources/symbols/AT7456E/DesignSpark PCB/Readme.html 813
+
+TOTAL: 10133
+resources/symbols/AT7456E/EAGLE/Readme.html 2014
+
+TOTAL: 12147
+resources/symbols/AT7456E/EasyEDA/Readme.html 599
+
+TOTAL: 12746
+resources/symbols/AT7456E/PADS/AT7456E.c 2178
+
+TOTAL: 14924
+resources/symbols/AT7456E/Proteus/8.8 or earlier/Readme.html 708
+
+TOTAL: 15632
+resources/symbols/AT7456E/Proteus/8.9 or later/Readme.html 416
+
+TOTAL: 16048
+resources/symbols/OpenESC_20X20-main/README.md 6345
+
+TOTAL: 22393
+resources/symbols/OpenESC_20X20-main/hardware/scripts/v_beta_hygiene_fix.py 6710
+
+TOTAL: 29103
+resources/symbols/OpenESC_20X20-main/hardware/tools/esc_thermal.py 21612
+
+TOTAL: 50715
+resources/symbols/OpenESC_20X20-main/licensing/README.md 695
+
+TOTAL: 51410
+(venv) 
+
+```
+
+this is where i am rn
+
+```
+
+GitHub URL
+      ↓
+GitHub API
+      ↓
+Repository Context
+      ↓
+JSON Response
+
+```
+
+what my goal is 
+```
+GitHub URL
+      ↓
+GitHub API
+      ↓
+Repository Context
+      ↓
+LLM
+      ↓
+Roast
+
+```
+
+so the next step is to connect LLm and then prompt engineering. i know how to connect the LLm but idk what to do with prompt, i only the img genration prompt lol.
+
+also i need the LLM that is free and have big enough context window.
+
+i think i will go with.
+
+i think i will go with the NVIDIA free API, like GLM 4 or KIMI 2.5
+
+hnow gonna get the API from the NVIDIA. 
+why the hell they asks too much.
+its taking soo much time. idk if this is my internet
+
+fkup, to get the API i need to verify with my number and NIVIDA is not availible in pkakistan. damn man. now i have to get any other API.
+
+now going with gemini
+
+so this is where i am rn and what i need to get
+greens means i completed that and while means i have to do it.
+```
+✅ GitHub API
+✅ Repo Tree
+✅ Important Files
+✅ Context Builder
+
+⬜ Gemini API Key
+⬜ Connect Gemini
+⬜ Build Roast Prompt
+⬜ Return AI Roast
+⬜ Display on Website
+⬜ Make it look 🔥
+```
+bruh finally got the API key from google. 
+
+pip installed now gonna start the real thinbg
+i amgetting the error that the model i am ttrying to use is not for free users.
+
+let mee see what model are avalible for me
+
+yoo i have inmpressive varity
+
+```
+
+
+  import google.generativeai as genai
+models/gemini-2.5-flash
+models/gemini-2.5-pro
+models/gemini-2.0-flash
+models/gemini-2.0-flash-001
+models/gemini-2.0-flash-lite-001
+models/gemini-2.0-flash-lite
+models/gemini-2.5-flash-preview-tts
+models/gemini-2.5-pro-preview-tts
+models/gemma-4-26b-a4b-it
+models/gemma-4-31b-it
+models/gemini-flash-latest
+models/gemini-flash-lite-latest
+models/gemini-pro-latest
+models/gemini-2.5-flash-lite
+models/gemini-2.5-flash-image
+models/gemini-3-pro-preview
+models/gemini-3-flash-preview
+models/gemini-3.1-pro-preview
+models/gemini-3.1-pro-preview-customtools
+models/gemini-3.1-flash-lite-preview
+models/gemini-3.1-flash-lite
+models/gemini-3-pro-image-preview
+models/gemini-3-pro-image
+models/nano-banana-pro-preview
+models/gemini-3.1-flash-image-preview
+models/gemini-3.1-flash-image
+models/gemini-3.1-flash-lite-image
+models/gemini-3.5-flash
+models/gemini-omni-flash-preview
+models/lyria-3-clip-preview
+models/lyria-3-pro-preview
+models/gemini-3.1-flash-tts-preview
+models/gemini-robotics-er-1.5-preview
+models/gemini-robotics-er-1.6-preview
+models/gemini-2.5-computer-use-preview-10-2025
+models/antigravity-preview-05-2026
+models/deep-research-max-preview-04-2026
+models/deep-research-preview-04-2026
+models/deep-research-pro-preview-12-2025
+```
+
+let mee what modle is best for my specific use case.
+
+so i am gonna use the **gemini-3.5-flash**
+
+idk why it is taking soo much time.
+
+idk what the hack is this yt td
+
+
+ohh man its working
+```
+Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
+$ python gemini_test.py
+Hello, I hope you are having a wonderful day!
+(venv) 
+Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
+$ 
+```
+now its time for fun part.
+
+i have made the prompt for now this is soo simple just to check if everything is working fine or not.
+
+its is taking soo much time.
+
+there was an error int he code so i hit the error that time now i have fixed lets see how it goes this time>
+
+
+ohh man this shit that i made roasted mee fahh.
+
+u should must read this
+
+```
+Oh boy, look what drifted in from the "delusional-projects" bin of GitHub. Grab some popcorn, because we are about to witness a $300 financial ruin speedrun (Any% category). 
+
+Meet **Dragonfly**—which is a highly ironic name, because this thing is never leaving the ground. It’s a custom Flight Controller + ESC All-In-One board that currently has the processing power of a brick.
+
+Let’s dissect this absolute trainwreck of a repository.
+
+---
+
+### 1. WHY THE HECK DID YOU BUILD THIS?
+You spent **$250 to $300** to design a custom 4-layer PCB using prehistoric STM32F405 silicon, just so you could say you built it "from scratch." 
+Bro, a SpeedyBee AIO costs $45 and actually flies. You built a literal fire hazard in KiCad because you wanted to look like Tony Stark in your bedroom, but instead, you ended up with a $300 paperweight that is **"not reqady to flash"** (yes, you even misspelled "ready" in your main status update. Peak professionalism).
+
+---
+
+### 2. ARCHITECTURE: The "I Can't Commit" Special
+You claim this is "designed for me by me." If so, why does your repository contain an *entirely separate open-source project* (`OpenESC_20X20-main`) inside your `resources/symbols` folder? 
+* Did you actually design an ESC, or did you just copy-paste someone else's 6-layer design, realize you couldn't route 6 layers, downscale it to 4 layers, and pray the EMF noise doesn't instantly reboot your gyro the moment you arm the motors?
+* You are running an **STM32F405** in 2026. That chip belongs in a museum, not on a "freestyle" quad. Enjoy those looptimes.
+
+---
+
+### 3. FOLDER STRUCTURE & STORAGE POLLUTION
+Your repository’s folder structure looks like a digital landfill.
+* Why on earth did you commit the **entire unzipped SamacSys download** for the `AT7456E` OSD chip?
+* You literally committed `Readme.html` files for **Altium, EAGLE, DesignSpark, Proteus, and EasyEDA** into a **KiCad** repository! Why do we need instructions on how to load a footprint into Altium when your project is in KiCad? Did you just select-all and drag-and-drop the entire `Downloads` folder into Git?
+* Your `resources/symbols` folder is literally 90% spam. Delete the garbage, it's not a storage unit.
+
+---
+
+### 4. CODE SMELLS: The "V-Beta Hygiene Fix" Horror Show
+Let's talk about `v_beta_hygiene_fix.py`. 
+```python
+# Operates on .kicad_sch files in BINARY MODE. Touches only the bytes inside
+# property values; never modifies whitespace...
+```
+* **What in the regex-hell is this?** You wrote a custom Python script to do *surgical binary-level string replacements* on KiCad schematic files because your component footprint naming conventions were so messed up.
+* Instead of just using KiCad’s built-in, GUI-based bulk footprint association tool like a civilized human, you decided to write a Python script that runs raw regex replacements on raw schematic bytes. One wrong character match and your entire schematic is corrupted beyond repair. This isn't "hygiene," this is playing Russian roulette with your hardware files.
+
+---
+
+### 5. NAMING & DOCUMENTATION
+* **The Typo of Doom:** `"Status: in progress configuration and pin-mapping stage, not reqady to flash"`
+If you can’t even proofread the main status line of your repository, how can we trust you mapped the pinout of a 64-pin MCU correctly? One wrong pin and you're going to feed 8V directly into the STM32's 3.3V rail.
+* **Dragonfly?** More like **Firefly**, because those discrete FD6288Q gate drivers and unvetted MOSFETs are going to turn into a brilliant puff of white smoke the millisecond you plug in a 4S battery.
+
+---
+
+### 6. MISSING FEATURES (The Sad Reality)
+* **Firmware:** *None.*
+* **Unified Target:** *Non-existent.*
+* **Code:** *Literally just a list of parts.*
+This isn’t a flight controller repository; this is a **KiCad shopping list**. You have committed zero lines of actual configuration. You don't have a Betaflight unified target; you have a `notes.md` file with a "pin mapping reference." 
+
+---
+
+### Summary of the Roast
+You designed a custom board, bought the components, 3D printed a frame, and set up a GitHub repo, all before checking if the firmware would even compile or flash. 
+
+You built a **$300 simulator of a drone** that exists only in Fusion 360 and your dreams. Clean up your folder structure, delete the stolen sub-repos, learn how to use KiCad's footprint editor instead of writing terrifying Python scripts, and please... buy a smoke stopper before you plug this thing in
+
+```
+
+going to take a breat for 2hrs to recahrg.
