@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from github import fetch_repo_data, build_repo_context
+from roaster import roast_repo
+
 
 app = Flask(__name__)
 
@@ -17,6 +19,10 @@ def roast():
     repo = fetch_repo_data(repo_url)
 
     context = build_repo_context(repo_url)
+    roast = roast_repo(context)
+    print("=" * 60)
+    print("context lenght:" , len(context))
+    print("="* 60)
 
     if repo is None:
         return jsonify({
@@ -27,7 +33,7 @@ def roast():
     return jsonify({
         "success" : True,
         "repo": repo,
-        "context": context
+        "roast": roast
     })
 
 
