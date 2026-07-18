@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor
 from dotenv import load_dotenv
 import base64
 import os 
@@ -78,7 +79,7 @@ def get_important_files(tree):
     priority_files = {
         "readme.md",
         "package.json",
-        "requirments.txt",
+        "requirements.txt",
         "app.py",
         "main.py",
         "manage.py",
@@ -109,8 +110,8 @@ def get_important_files(tree):
         ".c",
         ".cs",
         ".go",
-        ".rs"
-        ".php"
+        ".rs",
+        ".php",
     )
 
     ignored = (
@@ -128,6 +129,18 @@ def get_important_files(tree):
 
     for file in tree:
         path = file["path"]
+
+        skip_folder = (
+            "resources/",
+            "vendor/",
+            "node_modules/",
+            "dist/",
+            "build/",
+            "docs/",
+        )
+
+        if path.startswith(skip_folder):
+            continue
 
         if any(path.startswith(folder) for folder in ignored):
             continue 
@@ -149,26 +162,6 @@ def get_important_files(tree):
     
     return important
 
-def build_repo_context(url):
-    tree = fetch_repo_tree(url)
-
-
-    if tree is None:
-        return None
-    
-    files = get_important_files(tree)
-
-    context = ""
-
-    for file in files:
-        content = fetch_file_content(url, file)
-
-        if content:
-            context += f"\n\n==== {file} ====\n"
-            context += content
-
-    return context
-
 
 def build_repo_context(url):
     tree = fetch_repo_tree(url)
@@ -177,17 +170,24 @@ def build_repo_context(url):
         return None
     
     important_files = get_important_files(tree)
+    print("Files:", len(important_files))
 
     context = ""
 
-    for file in important_files:
-        content = fetch_file_content(url, file)
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        contents  =executor.map(
+            lambda file: (file, fetch_file_content(url, file)),
+            important_files
+        )
 
-        if content is None:
-            continue
+        for file, content in contents:
+            print(file)
 
-        context += f"\n\n===== {file} =====\n"
-        context += content[:4000]
+            if content is None:
+                continue
+
+            context += f"\n\n===== {file} =====\n"
+            context += content[:4000]
 
     return context
 
