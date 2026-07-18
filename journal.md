@@ -800,3 +800,106 @@ You built a **$300 simulator of a drone** that exists only in Fusion 360 and you
 ```
 
 going to take a breat for 2hrs to recahrg.
+
+yooooooo i back,
+
+actully i didnt reset i liged 1 extra hr for macondo to maintain my streek, rn it is 19 days yayyayayayy.
+
+it is taking too long to response, i have write the code to see how much time it takes to print the output, 
+
+ohh man this is teribal, and this is was my repo that wasnt event that long. but still gemini took 55secs
+
+```
+
+Repo: 0.6832201480865479
+context: 8.919949531555176
+Gemini: 55.55069708824158
+127.0.0.1 - - [18/Jul/2026 19:01:52] "POST /roast HTTP/1.1" 200 -
+
+```
+
+aahhh man idk what to do now. i think if i limit the gemini to fetch very less data and also shorten the response of the it will be fast, i am sure of it let me try.
+
+i have also found few more things that will destory my pipline, so i need to fixx all that tooo.
+
+gonna check the lenght of the prompt.
+bruh i dont know why the fk this happening.
+
+i am soo worked up.
+
+soo this time it only took 28secs last time it took 55sec.
+also its entire prompt is 29362 which is soo big.
+
+next i am going to measure how many files i am sending to Gemmini.
+
+bruh i am sending soo many junk
+
+```
+Repo: 1.0051443576812744
+Files: 14
+README.md
+resources/symbols/AT7456E/Altair/Readme.html
+resources/symbols/AT7456E/Altium/Readme.html
+resources/symbols/AT7456E/DEHDL/at7456e/sym_1/symbol.css
+resources/symbols/AT7456E/DesignSpark PCB/Readme.html
+resources/symbols/AT7456E/EAGLE/Readme.html
+resources/symbols/AT7456E/EasyEDA/Readme.html
+resources/symbols/AT7456E/PADS/AT7456E.c
+resources/symbols/AT7456E/Proteus/8.8 or earlier/Readme.html
+resources/symbols/AT7456E/Proteus/8.9 or later/Readme.html
+resources/symbols/OpenESC_20X20-main/README.md
+resources/symbols/OpenESC_20X20-main/hardware/scripts/v_beta_hygiene_fix.py
+resources/symbols/OpenESC_20X20-main/hardware/tools/esc_thermal.py
+resources/symbols/OpenESC_20X20-main/licensing/README.md
+context: 10.869335889816284
+29362
+Gemini: 33.50249218940735
+127.0.0.1 - - [18/Jul/2026 19:51:58] "POST /roast HTTP/1.1" 200 -
+```
+
+this is not what we need this is vendor docs, that we dont need.
+
+they are wasting Github aoi requests, context building time abd Gemini input token.
+
+gonna make the filter more better.
+
+looks good but still why only one file.
+
+```
+Repo: 2.5675048828125
+Files: 1
+README.md
+context: 1.5661237239837646
+4729
+Gemini: 16.5479257106781
+127.0.0.1 - - [18/Jul/2026 20:04:39] "POST /roast HTTP/1.1" 200 -
+```
+
+bro time is not consistent, i dont what the problem is but, its is taking soo much time, and i need to solve this.
+
+```
+Repo: 10.060757160186768
+Files: 1
+README.md
+context: 1.9480702877044678
+4729
+Gemini: 19.89607524871826
+127.0.0.1 - - [18/Jul/2026 20:28:13] "POST /roast HTTP/1.1" 200 -
+
+```
+
+i have optimized enogh, now just the gemini late respose left and if i tell it to reply in only curtin amounbt of words. i hope this will help
+
+
+ohh damn man tghis is soo much better.
+
+but its brutelness has droped idk why, first time i really felt it but now its not that hard.
+only the last one is fun
+
+```
+
+### Delusional Documentation
+Naming this "Dragonfly" is an insult to insects; "Mosquito with a short circuit" is more accurate. Your documentation is just a spec-sheet brag list for a project that hasn't even survived its maiden crash yet.
+
+Delete this repository before the fire department does.
+```
