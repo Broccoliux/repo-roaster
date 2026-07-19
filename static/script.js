@@ -46,12 +46,25 @@ button.addEventListener("click", async () => {
         <p>🍴 ${data.repo.forks}</p>
         <p>💻 ${data.repo.language || "Unknown"}</p>
         <hr>
-        <pre>${data.roast}</pre>
+        ${renderRoast(data.roast)}
+    
     `;
 
-}); 
+    }); 
 
 function isValidGitHubUrl(url) {
     const pattern = /^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/;
     return pattern.test(url);
+}
+
+function renderRoast(roast) {
+
+    const sections = roast.trim().split(/\n(?=[💀📂🐍📝🤡☠️])/);
+
+    return sections.map(section => `
+        <div class="roast-card">
+            ${section.replace(/\n/g, "<br>")}
+        </div>
+    `).join("");
+
 }
