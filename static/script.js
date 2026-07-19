@@ -5,7 +5,7 @@ const result = document.getElementById("result");
 console.log("NEW SCRIPT LOADED");
 
 button.addEventListener("click", async () => {
-
+    console.log("Button clicked")
     const url = input.value.trim();
 
 
@@ -14,11 +14,16 @@ button.addEventListener("click", async () => {
         return;
     }
 
+    console.log(url);
+    console.log(isValidGitHubUrl(url));
+
     if (!isValidGitHubUrl(url)) {
         alert("invalid");
         return;
     }
 
+    console.log("Passed validation");
+    console.log("Sending request...");
     const response = await fetch("/roast", {
         method: "POST",
         headers: {
@@ -28,29 +33,62 @@ button.addEventListener("click", async () => {
             url: url
         })
     });
+    console.log(response.status);
 
     const data = await response.json();
-
-    console.log(data.context);
+    console.log(data);
 
     if (!data.success) {
         result.innerHTML = `<h2>${data.message}</h2>`;
         return;
     }
-    
+
 
     result.innerHTML = `
-        <h2>📦 ${data.repo.name}</h2>
-        <p>👤 ${data.repo.owner}</p>
-        <p>⭐ ${data.repo.stars}</p>
-        <p>🍴 ${data.repo.forks}</p>
-        <p>💻 ${data.repo.language || "Unknown"}</p>
-        <hr>
-        ${renderRoast(data.roast)}
-    
-    `;
+    <h2>📦 ${data.repo.name}</h2>
 
-    }); 
+    <div class="repo-stats">
+
+        <div class="stat-card">
+            <span>👤</span>
+            <div>
+                <small>Owner</small>
+                <strong>${data.repo.owner}</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <span>⭐</span>
+            <div>
+                <small>Stars</small>
+                <strong>${data.repo.stars}</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <span>🍴</span>
+            <div>
+                <small>Forks</small>
+                <strong>${data.repo.forks}</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <span>💻</span>
+            <div>
+                <small>Language</small>
+                <strong>${data.repo.language || "Unknown"}</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    ${renderRoast(data.roast)}
+`;
+
+});
 
 function isValidGitHubUrl(url) {
     const pattern = /^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/;
@@ -68,30 +106,3 @@ function renderRoast(roast) {
     `).join("");
 
 }
-
-<div class="repo-stats">
-
-    <div class="stat-card">
-        <span>👤</span>
-    <div>
-        <small>Owner</small>
-        <strong>${data.repo.owner}</strong>       
-    </div>
-</div>
-
-<div class="stat-card">
-    <span>⭐</span>
-    <div>
-        <small>Stars</small>
-        <strong>${data.repo.stars}</strong>
-    </div>
-</div>
-
-<div class="stat-card">
-    <span>💻</span>
-    <div>
-        <small>Language</small>
-        <string>${data.repo.language || "Unknown"}</string>
-    </div>
-   </div>
-</div>
