@@ -34,8 +34,8 @@ button{
 .roast-card {
     background: #111;
     border: 1px solid #2a2a2a;
-    border-left: 4px solid #ff7b00;
-    border-radius: 10%;
+    border-left: 4px solid #4aff03;
+    border-radius: 10px;
 
     padding: 18px;
     margin: 18px 0;
@@ -43,18 +43,57 @@ button{
     line-height: 1.7;
     font-size: 15px;
 
-    white-space: pre-wrap;
+    white-space: pre-warp;
     word-wrap: break-word;
 
     transition: 0.2s ease;
 }
 
-.roast-card:hover {
-    transform: translateY(-2px);
-    border-color: #ff7b00;
+.roast-card:hovwer {
+    transform: translate(-2px);
+    border-color: #ff0000;
 }
 
 .roast-card:first-line {
     font-size: 18px;
     font-weight: 700;
+}
+
+.repo-stats{
+    display: flex;
+    gap: 14px;
+    margin: 22px 0;
+    flex-wrap: wrap;
+}
+
+.stat-card{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: #111;
+    border: 1px solid #252525;
+    border-radius: 10px;
+
+    padding: 14px 18px;
+    min-width: 170px;
+
+    transition: 2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: #ff7b00;
+
+}
+
+.stat-card span{
+    display: block;
+    color: #888;
+    margin-bottom: 3px;
+}
+
+.stat-card strong{
+    font-size: 15px;
+    color: #fff;
 }
