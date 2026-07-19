@@ -1,13 +1,15 @@
-import os
+
 from dotenv import load_dotenv
 from google import genai
+import os
 
 load_dotenv()
+
+print("API KEY:", os.getenv("GEMINI_API_KEY"))
 
 client = genai.Client(
     api_key= os.getenv("GEMINI_API_KEY")
 )
-
 
 def roast_repo(context):
     prompt = f"""
@@ -33,7 +35,7 @@ CORE Rules (NEVER break these):
 - End with one short savage conclusion max (only if it makes them feel dead inside).
 
 Response Style:
-Concise. Vicious. Funny. Psychological warfare. Make the crazy moron feel their repo is a public embarrassment that should be archived and forgotten. Destroy them personally with those insults while tearing the code apart.
+Concise. Vicious. Funny. Psychological warfare. Make the crazy moron feel their repo is a public embarrassment, Destroy them personally with those insults while tearing the code apart.etc, dont repeat same roast again and again.
 
 OUTPUT FORMAT (FOLLOW EXACTLY):
 
@@ -65,10 +67,11 @@ Repository:
     print(len(prompt))
 
 
-    response = client.models.generate_content(
+    response = client.models.generate_content_stream(
         model="gemini-3.5-flash",
         contents=prompt
-    )
+    )    
     
-    return response.text
-
+    for chunk in response:
+        if chunk.text:
+            yield chunk.text
