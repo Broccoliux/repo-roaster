@@ -5,5 +5,4 @@ response = client.models.generate_content(
     contents="say hello in one sentence"
 
 )
-
 print(response.text)
