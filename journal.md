@@ -901,3 +901,16 @@ Delete this repository before the fire department does.
 
 
 i changed the prompt but still its is not giving what i wanted.
+
+i have made the prompt soo bruatal that this is mt limit i cant go any further then this,
+
+now lets check if this gives what we want.
+
+bro wtf 
+
+```
+Your "July 10" firmware deadline is already dead, just like your future in engineering.
+
+```
+ok so now the response is actually moremlike i wanted, i like too much.
+but rn the roast takes the full page and we have to scroll to get the full view, i am gonna fix this.
