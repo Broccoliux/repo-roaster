@@ -914,3 +914,111 @@ Your "July 10" firmware deadline is already dead, just like your future in engin
 ```
 ok so now the response is actually moremlike i wanted, i like too much.
 but rn the roast takes the full page and we have to scroll to get the full view, i am gonna fix this.
+
+### 19/7/2026
+
+last day i sleep with everything working but now it is not working idk why i need to debug this.
+
+i think the the problem is the js, there is the error in the brower console, that says.
+
+```
+script.js:73 Uncaught SyntaxError: Unexpected token '<'
+```
+
+fahh, bro i was writing the code in js with html syntan is had to write that code in the result.innerHTML =
+
+i messed up the code while debigging, faggg
+
+now i am hitting the rate limit for gemini api
+it is printing this 
+
+```
+429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 7.873561735s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '7s'}]}}
+```
+
+i need one more account for this.
+
+got the new api now time to test it.
+its working now yayayayay.
+but rpompt need a lil more adjustments
+
+now gonna take a risk of trying the repo of the antropic, this gonna take soo much time fs
+
+it took around 45 secs to respond on antropic repo, and its was in 45 sec because of the filter, the filter i made is not good for the every repo, i mainly designed it for hackclubs kids projects. for antropic, it only fetched the plgins and responded to that.
+
+now that frontend and backend is working fine. but the api limit exceed error is printing on the web page. i dont want it like this, i want it to print something that will mock the user on this too.
+
+i did something again and now it is only giving this,
+
+```
+n)
+$ python app.py
+API KEY: *************************************************
+(venv) 
+```
+
+next step is 
+
+cache repo context so if someone roasts the same repo again, u skip GitHub fetching and send the cached context dorectly to gemini.
+
+i made it now just need to test it.
+
+cache is working perfectly check this out:
+
+```
+API KEY: AQ.Ab8RN6LVK9VJgESR_T57JMH7a3Or3tX-ihS3h32R_iJFCYPDXw
+ * Debugger is active!
+ * Debugger PIN: 102-280-820
+127.0.0.1 - - [19/Jul/2026 14:56:51] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jul/2026 14:56:54] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [19/Jul/2026 14:56:55] "GET /static/script.js HTTP/1.1" 304 -
+127.0.0.1 - - [19/Jul/2026 14:57:12] "GET /favicon.ico HTTP/1.1" 404 -
+Repo: 4.362728595733643
+Files: 1
+README.md
+conetxt: Built and cached
+conetxt: 2.0085861682891846
+5711
+Gemini: 12.13570499420166
+127.0.0.1 - - [19/Jul/2026 14:58:21] "POST /roast HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jul/2026 15:01:26] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jul/2026 15:01:26] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [19/Jul/2026 15:01:26] "GET /static/script.js HTTP/1.1" 304 -
+127.0.0.1 - - [19/Jul/2026 15:01:30] "GET /favicon.ico HTTP/1.1" 404 -
+Repo: 1.1845471858978271
+context: Loaded from cache
+conetxt: 8.702278137207031e-05
+5711
+Gemini: 9.877235651016235
+127.0.0.1 - - [19/Jul/2026 15:01:58] "POST /roast HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jul/2026 15:02:29] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jul/2026 15:02:29] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [19/Jul/2026 15:02:29] "GET /static/script.js HTTP/1.1" 304 -
+127.0.0.1 - - [19/Jul/2026 15:02:32] "GET /favicon.ico HTTP/1.1" 404 -
+Repo: 1.0337169170379639
+context: Loaded from cache
+conetxt: 0.00024080276489257812
+5711
+Gemini: 10.74187707901001
+127.0.0.1 - - [19/Jul/2026 15:02:48] "POST /roast HTTP/1.1" 200 -
+
+```
+
+it is working too well
+```
+Repo: 1.1973795890808105
+Files: 1
+README.md
+conetxt: Built and cached
+Context: 1.669s
+5711
+Gemini: 13.261s
+127.0.0.1 - - [19/Jul/2026 15:12:23] "POST /roast HTTP/1.1" 200 -
+Repo: 0.6747703552246094
+context: Loaded from cache
+5711
+Gemini: 19.949s
+127.0.0.1 - - [19/Jul/2026 15:13:36] "POST /roast HTTP/1.1" 200 -
+```
+
+next i am going too stream the roast to the frontend as Gemini genrates, like all LLms to show that AI is fast and the user start reading instantly. this will make it feel fast.
