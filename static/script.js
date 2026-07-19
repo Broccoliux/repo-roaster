@@ -35,7 +35,20 @@ button.addEventListener("click", async () => {
     });
     console.log(response.status);
 
-    const data = await response.json();
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+
+    result.innerHTML = "";
+
+    while (true) {
+        const {done, value} = await reader.read();
+
+        if (done) break;
+
+        result.innerHTML += decoder.decode(value)
+    }
+
+    
     console.log(data);
 
     if (!data.success) {
