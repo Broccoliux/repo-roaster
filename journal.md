@@ -1022,3 +1022,7 @@ Gemini: 19.949s
 ```
 
 next i am going too stream the roast to the frontend as Gemini genrates, like all LLms to show that AI is fast and the user start reading instantly. this will make it feel fast.
+
+time to test it ^.
+
+it works fahhh
