@@ -68,3 +68,30 @@ function renderRoast(roast) {
     `).join("");
 
 }
+
+<div class="repo-stats">
+
+    <div class="stat-card">
+        <span>👤</span>
+    <div>
+        <small>Owner</small>
+        <strong>${data.repo.owner}</strong>       
+    </div>
+</div>
+
+<div class="stat-card">
+    <span>⭐</span>
+    <div>
+        <small>Stars</small>
+        <strong>${data.repo.stars}</strong>
+    </div>
+</div>
+
+<div class="stat-card">
+    <span>💻</span>
+    <div>
+        <small>Language</small>
+        <string>${data.repo.language || "Unknown"}</string>
+    </div>
+   </div>
+</div>
