@@ -33,13 +33,14 @@ def roast():
     start = time.time()
     roast = roast_repo(context)
     print("Gemini:", time.time() - start)
-
-
+ 
     return jsonify({
         "success" : True,
-        "repo": repo,
+        "repo" : repo,
         "roast": roast
     })
+
+
 
 
 if __name__ == "__main__":
