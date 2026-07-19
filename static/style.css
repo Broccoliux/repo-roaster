@@ -30,3 +30,31 @@ button{
     cursor: progress;
 
 }
+
+.roast-card {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-left: 4px solid #ff7b00;
+    border-radius: 10%;
+
+    padding: 18px;
+    margin: 18px 0;
+
+    line-height: 1.7;
+    font-size: 15px;
+
+    white-space: pre-wrap;
+    word-wrap: break-word;
+
+    transition: 0.2s ease;
+}
+
+.roast-card:hover {
+    transform: translateY(-2px);
+    border-color: #ff7b00;
+}
+
+.roast-card:first-line {
+    font-size: 18px;
+    font-weight: 700;
+}
