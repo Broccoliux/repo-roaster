@@ -1025,4 +1025,6 @@ next i am going too stream the roast to the frontend as Gemini genrates, like al
 
 time to test it ^.
 
-it works fahhh
+it works fahhh.
+
+today goona lock in sooo hard, gonna slam everone in leaderboard today. ZEHAHAHAHH
