@@ -60,7 +60,7 @@ def stream():
 
     if repo_url in repo_cache:
         context = repo_cache[repo_url]
-        print("context: loaded from cache")
+        print("context: Loaded from cache")
     else: 
         context = build_repo_context(repo_url)
         repo_cache[repo_url] = context
