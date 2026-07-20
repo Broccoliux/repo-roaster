@@ -1,4 +1,4 @@
-# stores already-built repo context
+# stores already built repo context
 #key = Github repo url
 # Vlaue = COntext
 
