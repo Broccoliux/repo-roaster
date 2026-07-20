@@ -97,3 +97,8 @@ button{
     font-size: 15px;
     color: #fff
 }
+
+.stat-card strong{
+    font-size: 15px;
+    color: #fff;
+}
