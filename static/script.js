@@ -16,6 +16,11 @@ button.addEventListener("click", async () => {
         return;
     }
 
+    
+    if (!isValidGitHubUrl(url)) {
+    alert("Akal ni tare pee. Janwar, GitHub repo daal.");
+    return;
+}
 
     // Loading message
 
@@ -107,7 +112,7 @@ button.addEventListener("click", async () => {
             })
         });
 
-
+w
         if (!streamResponse.ok || !streamResponse.body) {
             roastOutput.innerHTML = `
                 <h2>Gian hoo appp</h2>
