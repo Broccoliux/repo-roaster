@@ -1044,3 +1044,31 @@ idk what but gemini is not working. let me check it.
 ohh man found it was the lib error, the lib was not responding idk why but it not wokring even i have instaloled it
 
 nah its not the lib error./
+googlle api is on hogh demand and is not wokting. rn
+
+the API is working but only for very small things like say hello, not for the roasting
+
+thid happening whenever i run Python app.py
+```
+ * Restarting with stat
+API KEY: AQ.Ab8RN6KyE50sPTASxTJrTlvDyVXYjyFGL6kjmesGUdpqmF12vA
+ * Debugger is active!
+ * Debugger PIN: 102-280-820
+127.0.0.1 - - [20/Jul/2026 14:34:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/Jul/2026 14:34:20] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [20/Jul/2026 14:34:20] "GET /static/script.js HTTP/1.1" 200 -
+127.0.0.1 - - [20/Jul/2026 14:34:23] "GET /favicon.ico HTTP/1.1" 404 -
+Repo: 1.323s
+127.0.0.1 - - [20/Jul/2026 14:34:29] "POST /repo HTTP/1.1" 200 -
+Files: 1
+README.md
+Context: Built and cached
+Context: 3.472s
+5711
+127.0.0.1 - - [20/Jul/2026 14:34:56] "POST /stream HTTP/1.1" 200 -
+```
+
+
+ohh man this is tooo hard.idk what too do i am comnpletely work out rn.srty
+
+i am solving one error. 5 more are comming idk what to doo, i cant even take the break.
