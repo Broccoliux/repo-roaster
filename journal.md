@@ -1028,3 +1028,5 @@ time to test it ^.
 it works fahhh.
 
 today goona lock in sooo hard, gonna slam everone in leaderboard today. ZEHAHAHAHH
+
+bruh just rewrote full JS , there was too many errors and i made the very big chnages in the code. 
