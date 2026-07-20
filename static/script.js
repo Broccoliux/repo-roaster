@@ -10,22 +10,22 @@ button.addEventListener("click", async () => {
 
     const url = input.value.trim();
 
+    // Empty input
     if (url === "") {
-        alert("mera dimag na shat kar bar**wee");
+        alert("mera dimag na shat kar masalli")
         return;
     }
 
-    function isValidGitHubUrl(url) {
-        alert("Akal ni tare pee. janwar, apni repo dall");
-        return;
-    }
 
     // Loading message
 
-    result.innerHTML = "<h2> 🔥 tu bach beta ab tuu gaya</h2>";
+    result.innerHTML = `
+        <h2>🔥 tu bach beta ab tuu gaya... </h2>
+    `;
 
     try {
-        // fetch the repo info
+
+        // fetch repository information
 
         const repoResponse = await fetch("/repo", {
             method: "POST",
@@ -39,60 +39,59 @@ button.addEventListener("click", async () => {
 
         const data = await repoResponse.json();
 
-        if (!data.success) {
-            result.innerHTML = `<h2> ${data.message}</h2>`;
+
+        if (!repoResponse.ok || !data.success) {
+            result.innerHTML = `
+                <h2>${data.message}</h2>
+            `;
             return;
         }
 
         // drawing the repo info
 
         result.innerHTML = `
-        <h2>📦 ${data.repo.name}</h2>
-        
-        <div class="repo-stats">
-            
-            
-            <div class="stat-card">
-                <span>👤</span>
-                <div>
-                    <small>Owner</small>
-                    <strong>${data.repo.owner}</strong>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <span>⭐</span>
-                <div>
-                    <small>Stars</small>
-                    <strong>${data.repo.stars}</strong>
-                </div>
-            </div>
-            
-            <div class = "stat-card">
-                <span>🍴</span>
-                <div>
-                    <small>Forks</small>
-                    <strong>${data.repo.forks}</strong>
-                </div>
-            </div>
-            
-            <div class = "stat-card">
-                <span>💻</span>
-                <div>
-                    <small>Language</small>
-                    <strong>${data.repo.language || "Unknown"}</strong>
-                </div>
-            </div>
-        
-        </div>
-        
-        <hr>
-        <div id="roast-output"></div>
-    
-    `;
+            <h2>📦 ${data.repo.name}</h2>
 
+            <div class="repo-stats">
 
+                <div class="stat-card">
+                    <span>👤</span>
+                    <div>
+                        <small>Owner</small>
+                        <strong>${data.repo.owner}</strong>
+                    </div>
+                </div>
 
+                <div class="stat-card">
+                    <span>⭐</span>
+                    <div>
+                        <small>Stars</small>
+                        <strong>${data.repo.stars}</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <span>🍴</span>
+                    <div>
+                        <small>Forks</small>
+                        <strong>${data.repo.forks}</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <span>💻</span>
+                    <div>
+                        <small>Language</small>
+                        <strong>${data.repo.language || "Unknown"}</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div id="roast-output"></div>
+        `;
 
         //stram Roast
 
@@ -101,15 +100,18 @@ button.addEventListener("click", async () => {
         const streamResponse = await fetch("/stream", {
             method: "POST",
             headers: {
-                "content-Type": "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 url: url
             })
         });
 
-        if (!streamResponse.ok) {
-            roastOutput.innerHTML = "<h2>Something went wrong.</h2>";
+
+        if (!streamResponse.ok || !streamResponse.body) {
+            roastOutput.innerHTML = `
+                <h2>Gian hoo appp</h2>
+            `;
             return;
         }
 
@@ -123,40 +125,42 @@ button.addEventListener("click", async () => {
             const { done, value } = await reader.read();
 
             if (done) break;
-            roast += decoder.decode(value, { stream: true });
+            roast += decoder.decode(value, {
+                stream: true
+            });
             roastOutput.innerHTML = renderRoast(roast);
-
-
         }
+    }
 
-    } catch (error) {
+    catch (error) {
         console.error(error);
 
         result.innerHTML = `
-        <h2>💀 THAHHHHH </h2>
-        <p>${error.message}</p>
-    `;
+            <h2>💀 Something exploded.</h2>
+            <p>${error.message}</p>
+        `;
     }
-
 });
 
-function isValiGitHubUrl(url) {
-    const pattern = /^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/;
+// Validate the GitHub url
 
+function isValidGitHubUrl(url) {
+    const pattern = /^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/;
     return pattern.test(url);
 }
 
-function renderRoast(roast) {
 
+// stream roast will be converted into cards
+function renderRoast(roast) {
     const sections = roast
         .trim()
         .split(/\n(?=[💀📂🐍📝🤡☠️])/);
 
-    return sections.map(section => `
-        <div class="roast-card">
-            ${sections.replace(/\n/g, "<br>")}
-            
-        </div>
-    
-    `).join("");
+    return sections
+        .map(section => `
+            <div class="roast-card">
+                ${section.replace(/\n/g, "<br>")}
+            </div>
+        `)
+        .join("");
 }
