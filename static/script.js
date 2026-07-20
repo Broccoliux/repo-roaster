@@ -47,8 +47,9 @@ button.addEventListener("click", async () => {
 
         if (done) break;
 
-        roast += decoder(value, {sream: true});
-        result.innerHTML = '
+        roast += decode(value, {sream: true});
+
+        result.innerHTML = `
             <h2>📦 ${data.repo.name}</h2>
             
             <div class="repo-stats">
@@ -81,7 +82,7 @@ button.addEventListener("click", async () => {
         <hr>
 
         ${renderRoast(roast)}
-        ';
+        `;
         
     }
 
