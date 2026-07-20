@@ -25,48 +25,50 @@ def home():
     return render_template("index.html")
 
 
-# Roast endpoint
-@app.route("/roast", methods=["POST"])
-def roast():
+@app.route("/repo", methods = ["POST"])
+def repo():
 
-    # Get JSON sent from JavaScript
     data = request.get_json()
     repo_url = data.get("url", "")
-
-    # Fetch repository info
 
     start = time.time()
 
     repo = fetch_repo_data(repo_url)
 
-    print("Repo:", time.time() - start)
+    print(f"Repo: {time.time() - start:.3f}s")
 
     if repo is None:
         return jsonify({
             "success": False,
             "message": "Repository not found."
         }), 404
+    
+    return jsonify({
+        "success": True,
+        "repo": repo 
+    })
 
-    # Build context for Gemini
 
+@app.route("/stream", methods=["POST"])
+def stream():
+
+    data = request.get_json()
+    repo_url = data.get("url", "")
+
+    #build context
     start = time.time()
 
     if repo_url in repo_cache:
-
         context = repo_cache[repo_url]
-        print("context: Loaded from cache")
-    else:
+        print("context: loaded from cache")
+    else: 
         context = build_repo_context(repo_url)
         repo_cache[repo_url] = context
-        print("conetxt: Built and cached")
+        print("Context: Built and cached")
 
-        print(f"Context: {time.time() - start:.3f}s")
+    print(f"Context: {time.time() - start:.3f}s")
 
-
-
-    # Generate roast
-
-    start = time.time()
+    # Stream Gemnini
 
     try:
         return Response(
@@ -79,8 +81,9 @@ def roast():
 
         return jsonify({
             "success": False,
-            "message": random.choice(ERRORS)
+            "message" : random.choice(ERRORS)
         }), 500
+
 
 
 if __name__ == "__main__":
