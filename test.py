@@ -1,18 +1,10 @@
-from github import fetch_repo_tree, get_important_files, fetch_file_content
+from roaster import client
 
-url = "https://github.com/Broccoliux/dragonfly"
+response = client.models.generate_content_stream(
+    model="gemini-3.5-flash",
+    contents="Write a short poem."
+)
 
-files = get_important_files(fetch_repo_tree(url))
-
-total = 0
-
-for file in files:
-    content = fetch_file_content(url, file)
-
-    if content:
-        print(file, len(content))
-        total += len(content)
-
-    print("\nTOTAL:", total)
-
-    
+for chunk in response:
+    if chunk.text:
+        print(chunk.text, end="")
