@@ -1072,3 +1072,13 @@ Context: 3.472s
 ohh man this is tooo hard.idk what too do i am comnpletely work out rn.srty
 
 i am solving one error. 5 more are comming idk what to doo, i cant even take the break.
+
+i am dead, idk if i will make this or not
+
+i haev fixed the most of the code  but now the libs are playing with me.
+
+ahhhhhhhhhhhhhhhh
+
+bro its not working idk what to doo now.
+
+everything is now orking fine but when AI works starts it sucks
