@@ -11,18 +11,18 @@ button.addEventListener("click", async () => {
     const url = input.Value.trim();
 
     if (url === "") {
-        alert("Please enter a Github repo.");
+        alert("mera dimag na shat kar bar**wee");
         return;
     }
 
-    if (!isValidGitHubUrl(url)) {
-        alert("Invalid GitHub repository URL.");
+    function isValidGitHubUrl(url) {
+        alert("Akal ni tare pee. janwar, apni repo dal");
         return;
     }
 
     // Loading message
 
-    result.innerHTML = "<h2> 🔥 Preparing the roast...</h2>";
+    result.innerHTML = "<h2> 🔥 tu bach beta ab tuu gaya</h2>";
 
     try {
         // fetch the repo info
@@ -52,7 +52,7 @@ button.addEventListener("click", async () => {
         <div class="repo-stats">
             
             
-            <div class="stat-card"
+            <div class="stat-card">
                 <span>👤</span>
                 <div>
                     <small>Owner</small>
@@ -60,7 +60,7 @@ button.addEventListener("click", async () => {
                 </div>
             </div>
             
-            <div class="stat-card>
+            <div class="stat-card">
                 <span>⭐</span>
                 <div>
                     <small>Stars</small>
@@ -68,7 +68,7 @@ button.addEventListener("click", async () => {
                 </div>
             </div>
             
-            <div class = "stat-card>
+            <div class = "stat-card">
                 <span>🍴</span>
                 <div>
                     <small>Forks</small>
@@ -87,7 +87,7 @@ button.addEventListener("click", async () => {
         </div>
         
         <hr>
-        <div id="roast-output"></dir>
+        <div id="roast-output"></div>
     
     `;
 
@@ -101,7 +101,7 @@ button.addEventListener("click", async () => {
         const streamResponse = await fetch("/stream", {
             method: "POST",
             headers: {
-                "Content-Type": "app;ication/json"
+                "content-Type": "application/json"
             },
             body: JSON.stringify({
                 url: url
@@ -115,7 +115,7 @@ button.addEventListener("click", async () => {
 
 
         const reader = streamResponse.body.getReader();
-        const decoder = new textDecoder();
+        const decoder = new TextDecoder();
 
         let roast = "";
 
@@ -148,13 +148,13 @@ function isValiGitHubUrl(url) {
 
 function renderRoast(roast) {
 
-    const section = roast
+    const sections = roast
         .trim()
-        .split(/\n(? =[💀📂🐍📝🤡☠️])/);
+        .split(/\n(?=[💀📂🐍📝🤡☠️])/);
 
-    return section.map(section > `
+    return sections.map(section => `
         <div class="roast-card">
-            ${section.replace(/\n/g, "<br>")}
+            ${sections.replace(/\n/g, "<br>")}
             
         </div>
     
