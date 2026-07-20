@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repo Roaster</title>
+    <meta name="viewpoint" content="width=devic-width, initial-scale=1.0">
+
+
+    <title>REPO ROASTER</title>
+
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 
 <body>
-   <main>
-     <section class="hero">
-        <h1>🔥 REPO ROASTER</h1>
 
-        <p>Paste a Github repo URL. GET destyroyed.</p>
+    <main>
 
-        <input
-        type="text"
-        id="repo-url"
-        placeholder="https://github.com/owner/repository"
-        >
+        <section class="hero">
+            <h1>🔥 REPO ROASTER</h1>
 
-        <button id="roast-btn">
-            Roast it
-        </button>
-     </section>
-     <section id="result">
-     </section>
-   </main>
+            <p>Dont u dare to drop u sh*t, u gonna destroyed</p>
+
+            <input
+
+                type="text"
+                id="repo-url"
+                placeholder="https://github.com/owner/repository"
+                
+            >
+
+            <button id="roast-btn">
+                Death sentence 
+            </button>
+        </section>
+
+        <section id="result"></section>
+
+        </main>
+
+        <!-- to  load js after the HTML-->
+        <script src="{{ url_for('static', filename = 'script.js')}}"></script>
 </body>
 </html>
