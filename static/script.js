@@ -8,7 +8,7 @@ console.log("NEW SCRIPT LOADED");
 
 button.addEventListener("click", async () => {
 
-    const url = input.Value.trim();
+    const url = input.value.trim();
 
     if (url === "") {
         alert("mera dimag na shat kar bar**wee");
@@ -16,7 +16,7 @@ button.addEventListener("click", async () => {
     }
 
     function isValidGitHubUrl(url) {
-        alert("Akal ni tare pee. janwar, apni repo dal");
+        alert("Akal ni tare pee. janwar, apni repo dall");
         return;
     }
 
