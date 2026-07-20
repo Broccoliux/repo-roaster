@@ -35,17 +35,54 @@ button.addEventListener("click", async () => {
     });
     console.log(response.status);
 
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
 
-    result.innerHTML = "";
+    
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder ();
+
+    let roast = "";
 
     while (true) {
-        const {done, value} = await reader.read();
+        const { done, value } = await reader.read();
 
         if (done) break;
 
-        result.innerHTML += decoder.decode(value)
+        roast += decoder(value, {sream: true});
+        result.innerHTML = '
+            <h2>📦 ${data.repo.name}</h2>
+            
+            <div class="repo-stats">
+
+                <div class="stat-card">
+                    <span>👤</span>
+                    <div>
+                        <small>Owner</small>
+                        <string>${data.repo.owner}</string>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <span>⭐</span>
+                    <div>
+                        <small>Stars</small>
+                        <strong>${data.repo.stars}</strong>
+                    </div>
+                </div>
+
+                <div class = "stat-card">
+                    <span>💻</span>
+                    <div>
+                        <small>Language</small>
+                        <strong>${data.repo.language || "unknown"}</strong>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+
+        ${renderRoast(roast)}
+        ';
+        
     }
 
     
