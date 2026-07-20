@@ -8,7 +8,7 @@ console.log("NEW SCRIPT LOADED");
 
 button.addEventListener("click", async () => {
 
-    const url = input.ariaValueMax.trim();
+    const url = input.Value.trim();
 
     if (url === "") {
         alert("Please enter a Github repo.");
@@ -37,7 +37,7 @@ button.addEventListener("click", async () => {
             })
         });
 
-        const data = await repoRespone.Json;
+        const data = await repoResponse.json();
 
         if (!data.success) {
             result.innerHTML = `<h2> ${data.message}</h2>`;
