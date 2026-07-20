@@ -1030,3 +1030,17 @@ it works fahhh.
 today goona lock in sooo hard, gonna slam everone in leaderboard today. ZEHAHAHAHH
 
 bruh just rewrote full JS , there was too many errors and i made the very big chnages in the code. 
+
+damn man debugging is hell.
+
+im stuck pull me out.rg=
+
+idk whst happening server isnt respondong
+
+ahhh ,man idk what to dooooooo
+
+idk what but gemini is not working. let me check it.
+
+ohh man found it was the lib error, the lib was not responding idk why but it not wokring even i have instaloled it
+
+nah its not the lib error./
