@@ -20,10 +20,11 @@ def generate_speech(text):
         "model_id": "eleven_multilingual_v2"
     }
 
-    response = request.post(
+    response = requests.post(
         url,
         json=payload,
         headers=headers
     )
 
+    return response.content
     return response.content
