@@ -1264,6 +1264,7 @@ i have made the dowload btn, let me test it
 its not working, ahh idk whats wrong code looks ok
 
 ohh man finally made the made the download button
-
-
 oky now its working perfectly.
+
+next i am going to make the optiion so the user can listen the roast
+i am going to use the eleven labs api, but i dont know how i am gonna get that mocking voice
