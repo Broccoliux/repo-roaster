@@ -108,7 +108,7 @@ def stream():
         )
     
     except Exception as e:
-        print("GEmini Error:", e)
+        print("Gemini Errors:", e)
 
         return jsonify({
             "success": False,
