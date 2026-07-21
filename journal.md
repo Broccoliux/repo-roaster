@@ -1221,3 +1221,4 @@ ysyasyyayayayayay working pefectly.
 
 showing the funny error msg.
 
+now i was thinking of adding the progress bar. like its loading as the gemini is thinking.
