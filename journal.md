@@ -1082,3 +1082,45 @@ ahhhhhhhhhhhhhhhh
 bro its not working idk what to doo now.
 
 everything is now orking fine but when AI works starts it sucks
+
+i think i have finally fixed the all code across all the files, i did some improvments and code it better.
+but AI still sucks.
+
+
+ sooo i am going to take the help from AI i have done everything to get the output of the AI but its is not, and the terminal outputs are soo he;;i dont even wants to read them.
+
+ VS code agent is working i hope it will pinout the problem, as much i know this is related to the the google server, sometimes it shows that APi is wrong and sometime it shows that google servers are down. fahhhhhhhhhh
+
+agent said me that ur api might be wrong or the google is blocking idk what the heck is this. the api works when we print hello statment. 
+
+he said try with new API this is the only know reason for the faliure, lets see if API changes anything.
+
+i have made the new api key now testing it, plzz i hope it will work
+
+its is saying something like this
+```
+127.0.0.1 - - [21/Jul/2026 01:46:48] "POST /stream HTTP/1.1" 200 -
+Error on request:
+Traceback (most recent call last):
+  File "F:\OneDrive\Desktop\cloned repos\repo-roaster\venv\Lib\site-packages\werkzeug\serving.py", line 371, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "F:\OneDrive\Desktop\cloned repos\repo-roaster\venv\Lib\site-packages\werkzeug\serving.py", line 335, in execute
+    write(data)
+    ~~~~~^^^^^^
+  File "F:\OneDrive\Desktop\cloned repos\repo-roaster\venv\Lib\site-packages\werkzeug\serving.py", line 303, in write
+    assert isinstance(data, bytes), "applications must write bytes"
+           ~~~~~~~~~~^^^^^^^^^^^^^
+AssertionError: applications must write bytes
+```
+idk what the fk is this.
+
+i think the conclusion is that my gemini quota is burned and it need time to reset let me use another api key.
+
+just  checked that i made made 22 requests today and i only had 20 requests, and new api didnt help either, cuzz they were from the same accout
+
+last night i had to stop thw work cuz my light was, nut today i am back again.
+goona fix all things and then i will be movinmg to finalize all things.
+
+
+ahh i am still hitting that error i think i should complete make new account  for API, cuzz i got an email that they will revoke my APIs, cuzz they are public idk what the heck.
