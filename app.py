@@ -110,8 +110,12 @@ def stream():
     except Exception as e:
         print("GEmini Error:", e)
 
-        return jsonify
-
+        return jsonify({
+            "success": False,
+            "message": random.choice(ERRORS),
+            "error": str(e)
+        }), 500
+    
 # start Flask server
 
 #debug=True auto reloads the server whenever someone saves the file.
