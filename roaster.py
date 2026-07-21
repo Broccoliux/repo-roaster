@@ -1,4 +1,4 @@
-"""
+
 from dotenv import load_dotenv
 from google import genai
 import os
@@ -16,6 +16,7 @@ client = genai.Client(
 
 def roast_repo(context):
     """
+
     Takes the repository context and streams back Gemini's roast
     one chunk at a time. this took hell
     """
@@ -79,7 +80,7 @@ Repository:
 
 {context}
 """
-    
+
     # useful for debugging prompt size'
     print(f"Prompt Lenght: {len(prompt)}")
 
@@ -88,16 +89,11 @@ Repository:
         model="gemini-3.5-flash",
         contents=prompt
 
-
     )
+
 
     # yield each chunk as soon gemini generates it
 
     for chunk in response:
         if chunk.text:
-            yield chunk
-"""
-
-from google import genai
-from dotenv import load_dotenv
-import os
+            yield chunk.text
