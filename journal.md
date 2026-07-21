@@ -1258,3 +1258,7 @@ This repo is a digital war crime that needs to be purged from the internet immed
 ```
 
 next i am gonna ad the download button to  download ur insult...
+
+i have made the dowload btn, let me test it
+
+its not working, ahh idk whats wrong code looks ok
