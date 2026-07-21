@@ -51,7 +51,7 @@ button{
 
 .roast-card:hover {
     transform: translateY(-2px);
-    border-color: #ff0000;
+    border-color: #3700ff;
 }
 
 .roast-card:first-line {
