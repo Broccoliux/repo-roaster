@@ -99,16 +99,19 @@ Repository:
     #ask gemini to stream the response
     try:
         response = client.models.generate_content_stream(
-            model="gemini-this-does-not-exist",
+            model="gemini-3.5-flash",
             contents=prompt
     )
+        
+        DEBUG = False
 
         for chunk in response:
             if chunk.text:
-                print(f"Chunk received: {repr(chunk.text)}")
-                yield chunk.text
+                if DEBUG:
+                 print(f"Chunk received: {repr(chunk.text)}")
+            yield chunk.text
 
-                
+    
     except Exception as e:
     # Print the real error in the terminal
         print("\nGemini Error:", e)
