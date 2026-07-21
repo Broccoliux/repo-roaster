@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 from google import genai
 import os
+import random
 
 
 #load variables from the .env file
@@ -12,6 +13,18 @@ load_dotenv()
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
+
+# Funny messages shown when Gemini dies.
+# Instead of showing Python errors to the user,
+# we roast Gemini for giving up.
+
+ERRORS = [
+    "💀 Repo Roaster rage quit. Your repo dealt psychic damage to the AI. Try again in a minute, you freak.",
+    "🤢 Your repo was so painful that Gemini filed for workers' compensation.",
+    "☠️ My LLM refused hazard pay after seeing this repository.",
+    "💀 Even Gemini couldn't survive this codebase. Give it a minute to recover.",
+    "🤡 Your repo crashed the roaster before it could finish. I think you already know how cooked this repo is."
+]
 
 def roast_repo(context):
     """
@@ -84,15 +97,28 @@ Repository:
     print(f"Prompt Lenght: {len(prompt)}")
 
     #ask gemini to stream the response
-    response = client.models.generate_content_stream(
-        model="gemini-3.5-flash",
-        contents=prompt
-
+    try:
+        response = client.models.generate_content_stream(
+            model="gemini-this-does-not-exist",
+            contents=prompt
     )
 
+        for chunk in response:
+            if chunk.text:
+                print(f"Chunk received: {repr(chunk.text)}")
+                yield chunk.text
 
-    # yield each chunk as soon gemini generates it
+                
+    except Exception as e:
+    # Print the real error in the terminal
+        print("\nGemini Error:", e)
 
-    for chunk in response:
-        if chunk.text:
-            yield chunk.text
+    # Show a funny message on the website
+        yield f"""
+    {random.choice(ERRORS)}
+
+    ━━━━━━━━━━━━━━━━━━━━━━
+
+    Technical details:
+    {str(e)}
+    """
