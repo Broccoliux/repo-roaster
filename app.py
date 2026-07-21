@@ -108,12 +108,9 @@ def stream():
         )
     
     except Exception as e:
-        print("Gemini Error:", e)
+        print("GEmini Error:", e)
 
-        return jsonify({
-            "success": False,
-            "message": random.choice(ERRORS)
-        }), 500
+        return jsonify
 
 # start Flask server
 
