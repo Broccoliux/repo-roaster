@@ -151,7 +151,8 @@ button.addEventListener("click", async () => {
             <hr>
 
             <div class="roast-actions">
-                <button id="copy-btn"> 📋 Copy Roast</button>
+                <button id="copy-btn">Copy Roast</button>
+                <button id="download-btn">Download Roast</button>
             </div>
 
             <div id="roast-output"></div>
@@ -162,7 +163,9 @@ button.addEventListener("click", async () => {
     const roastOutput = document.getElementById("roast-output");
 
     const copyBtn = document.getElementById("copy-btn");
+    const downloadBtn = document.getElementById("download-btn");
     copyBtn.style.display = "none";
+    downloadBtn.style.display = "none";
 
     const streamResponse = await fetch("/stream", {
       method: "POST",
@@ -223,6 +226,7 @@ button.addEventListener("click", async () => {
       roastOutput.innerHTML = renderRoast(roast);
     }
     copyBtn.style.display = "inline-block";
+    downloadBtn.style.display = "inline-block";
 
     copyBtn.addEventListener("click", async () => {
 
@@ -232,7 +236,7 @@ button.addEventListener("click", async () => {
         copyBtn.innerHTML = "✅ Copied!";
 
         setTimeout(() => {
-          copyBtn.innerHTML = "📋 Copy Roast";
+          copyBtn.innerHTML = "Copy Roast";
         }, 2000);
 
       }
@@ -243,17 +247,18 @@ button.addEventListener("click", async () => {
 
     });
 
-    downlaodBtn.addEventListener("click", () => {
+    downloadBtn.addEventListener("click", () => {
+      console.log(roast);
 
       const content =
-        `REPO REAPER ☠️
+    `REPO REAPER ☠️
     =-=-=-=-=-=-=-=-=-==-=-=-=-=
 
     Repository:
     ${url}
 
     Generated:
-    ${new Data().tolocalString()}
+    ${new Date().toLocaleString()}
     =-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
     ${roast}
@@ -264,9 +269,10 @@ button.addEventListener("click", async () => {
       });
 
       const file = URL.createObjectURL(blob);
+
       const a = document.createElement("a");
 
-      a.herf = file;
+      a.href = file;
       a.download = "repo-roast.txt";
 
       document.body.appendChild(a);
@@ -274,33 +280,34 @@ button.addEventListener("click", async () => {
       a.remove();
 
       URL.revokeObjectURL(file);
+
     });
 
 
-    button.disabled = false;
-    button.innerHTML = defaultButtonText;
-    input.disabled = false;
-  }
+      button.disabled = false;
+      button.innerHTML = defaultButtonText;
+      input.disabled = false;
+    }
 
 
 
   catch (error) {
-    console.error(error);
+      console.error(error);
 
-    clearInterval(progressInterval);
+      clearInterval(progressInterval);
 
-    result.innerHTML = `
+      result.innerHTML = `
         <div class="error-card">
             <h2>☠️ Repo Reaper tripped over your code.</h2>
             <p>${error.message}</p>
         </div>
         `;
 
-    button.disabled = false;
-    button.innerHTML = defaultButtonText;
-    input.disabled = false;
-  }
-});
+      button.disabled = false;
+      button.innerHTML = defaultButtonText;
+      input.disabled = false;
+    }
+  });
 
 
 // Validate the GitHub url
