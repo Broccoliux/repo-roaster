@@ -49,7 +49,7 @@ def fetch_repo_data(url):
     response = requests.get(
         api_url,
         headers=headers,
-        timeout=15
+        timeout=30
     )
 
     # Repo doesnt exists or github rejected the requests.
