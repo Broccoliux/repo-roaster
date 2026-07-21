@@ -30,9 +30,45 @@ input.disabled = true;
     // Loading message
 
     result.innerHTML = `
-        <h2>🔥 tu bach beta ab tuu gaya... </h2>
-    `;
+         <h2 id="loading-text">🔥 Preparing your funeral...</h2>
+         
+         <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <p id="progress-percent">0%</p>
 
+        `;
+
+        const progressBar = document.getElementById("progress-bar");
+        const progressPercent = document.getElementById("progress-percent");
+        const loadingText = document.getElementById("loading-text");
+
+        let progress = 0;
+
+        const loadingMessages = [
+            "🔍 Stalking your repo...",
+            "📂 Reading your crimes...",
+            "🧠 Teaching Gemini to hate you...",
+            "💀 Preparing psychological damage...",
+            "🔥 Loading insults..."
+        ];
+        
+        const progressInterval = setInterval(() => {
+        
+            if (progress < 95) {
+                progress += Math.random() * 7;
+            
+                progressBar.style.width = progress + "%";
+                progressPercent.textContent = Math.floor(progress) + "%";
+            }
+        
+            loadingText.textContent =
+                loadingMessages[Math.floor(progress / 20)] || "🔥 Almost there...";
+        
+        }, 250);              
+
+        
     try {
 
         // fetch repository information
@@ -45,18 +81,31 @@ input.disabled = true;
             body: JSON.stringify({
                 url: url
             })
-        });
+        });                                                              
 
         const data = await repoResponse.json();
 
 
         if (!repoResponse.ok || !data.success) {
+
+            clearInterval(progressInterval);
+
+            button.disabled = false;
+            button.innerHTML = defaultButtonText;
+            input.disabled = false;
+
             result.innerHTML = `
-                <h2>${data.message}</h2>
+            <h2>${data.message}</h2>
             `;
+
             return;
+
         }
 
+        clearInterval(progressInterval);
+
+        progressBar.style.width = "100%";
+        progressPercent.textContent = "100%";
         // drawing the repo info
 
         result.innerHTML = `
@@ -120,16 +169,16 @@ input.disabled = true;
         if (!streamResponse.ok) {
             const error = await streamResponse.json();
 
-            roastOutput.innerHTMl = `
+            roastOutput.innerHTML = `
             
-                <div class= "error-card>
+                <div class="error-card">
                     <h2>${error.message}</h2>
                 </div>
             `;
 
             button.disabled = false;
             button.innerHTML = defaultButtonText;
-            Image.disabled = false;
+            input.disabled = false;
 
             return;
         }
@@ -137,7 +186,7 @@ input.disabled = true;
         if (!streamResponse.body) {
 
             roastOutput.innerHTML = `
-                <div class= "error-card">
+                <div class="error-card">
                     <h2>No response from Repo Reaper.</h2>
                 </div>
             `;
@@ -171,9 +220,12 @@ input.disabled = true;
         input.disabled = false;
     }
 
+    
 
     catch (error) {
         console.error(error);
+
+        clearInterval(progressInterval);
 
         result.innerHTML = `
         <div class="error-card">
