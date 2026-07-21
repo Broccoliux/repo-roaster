@@ -1198,3 +1198,9 @@ but even before that i need to make this smooth abd more like a finshed app then
 i tested this repo and it been a whole min and it is still get the all the files
 
 [text](https://github.com/different-ai/openwork)
+
+now i am hitting slow internet error. fahhhhhhhhhhhhh
+
+my timeout was only 15secs i have chnaged it to 30, it will be ,much better. 
+
+i  have made the button disabler. then the roast is getting genrated the buttons get disabled and is not click able, means no spaming.
