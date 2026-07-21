@@ -1222,3 +1222,9 @@ ysyasyyayayayayay working pefectly.
 showing the funny error msg.
 
 now i was thinking of adding the progress bar. like its loading as the gemini is thinking.
+
+i have made the loading animation it is not perfect, but it looks good.
+
+ahh my api again is finshed for today.
+
+ii changed the api and now it showing that it is under high demand.
