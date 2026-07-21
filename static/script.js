@@ -117,10 +117,35 @@ input.disabled = true;
             })
         });
 
-        if (!streamResponse.ok || !streamResponse.body) {
-            roastOutput.innerHTML = `
-                <h2>Gian hoo appp</h2>
+        if (!streamResponse.ok) {
+            const error = await streamResponse.json();
+
+            roastOutput.innerHTMl = `
+            
+                <div class= "error-card>
+                    <h2>${error.message}</h2>
+                </div>
             `;
+
+            button.disabled = false;
+            button.innerHTML = defaultButtonText;
+            Image.disabled = false;
+
+            return;
+        }
+
+        if (!streamResponse.body) {
+
+            roastOutput.innerHTML = `
+                <div class= "error-card">
+                    <h2>No response from Repo Reaper.</h2>
+                </div>
+            `;
+
+            button.disabled = false;
+            button.innerHTML = defaultButtonText;
+            input.disabled = false;
+
             return;
         }
 
@@ -151,8 +176,10 @@ input.disabled = true;
         console.error(error);
 
         result.innerHTML = `
-            <h2>💀 Thaaaaaaaaaaaaa.</h2>
+        <div class="error-card">
+            <h2>☠️ Repo Reaper tripped over your code.</h2>
             <p>${error.message}</p>
+        </div>
         `;
 
         button.disabled = false;
