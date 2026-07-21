@@ -149,12 +149,19 @@ input.disabled = true;
 
             <hr>
 
+            <div class="roast-actions">
+                <button id="copy-btn"> 📋 Copy Roast</button>
+            </div>
+
             <div id="roast-output"></div>
         `;
 
         //stram Roast
 
         const roastOutput = document.getElementById("roast-output");
+
+        const copyBtn = document.getElementById("copy-btn");
+        copyBtn.style.display = "none";
 
         const streamResponse = await fetch("/stream", {
             method: "POST",
@@ -214,7 +221,28 @@ input.disabled = true;
 
             roastOutput.innerHTML = renderRoast(roast);
         }
+        copyBtn.style.display = "inline-block";
 
+        copyBtn.addEventListener(async () => {
+
+        try {
+
+            await navigator.clipboard.writeText(roast);
+            copyBtn.innerHTML = "✅ Copied!";
+
+            setTimeout(() => {
+                copyBtn.innerHTML = "📋 Copy Roast";
+            }, 2000);
+
+        }
+
+        catch {
+            alert("Couldn't copy your insult.");
+        }
+
+    });
+
+    
         button.disabled = false;
         button.innerHTML = defaultButtonText;
         input.disabled = false;
