@@ -108,4 +108,53 @@ button{
     height: 14px;
     background: #222;
     border-radius: 999px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.progress-bar{
+    width: 0%;
+    height: 100%;
+    background: #26da0e;
+    transition: width .25s  ease;
+}
+
+#progress-percent{
+    margin-top: 10px;
+    color: #26da0e;
+    font-weight: bold;
+}
+
+#loading-text{
+    margin-bottom: 15px;
+}
+
+.roast-actions{
+    margin:20px 0;
+}
+
+#copy-btn{
+
+    padding:12px 22px;
+
+    background:#26da0e;
+
+    color:#000;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+#copy-btn:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.9;
 }
