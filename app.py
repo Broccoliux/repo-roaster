@@ -78,7 +78,7 @@ def stream():
     #build context or will load from cache, if savedf
 
     start = time.time()
-    
+
     if repo_url in repo_cache:
 
         context = repo_cache[repo_url]
@@ -106,7 +106,7 @@ def stream():
             roast_repo(context),
             mimetype="text/plain"
         )
-    
+
     except Exception as e:
         print("Gemini Errors:", e)
 
@@ -115,11 +115,11 @@ def stream():
             "message": random.choice(ERRORS),
             "error": str(e)
         }), 500
-    
+
 # start Flask server
 
 #debug=True auto reloads the server whenever someone saves the file.
 
+
 if __name__ == "__main__":
     app.run(debug=True)
-
