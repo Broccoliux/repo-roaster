@@ -238,10 +238,37 @@ button.addEventListener("click", async () => {
       }
 
       catch {
-        alert("Couldn't copy your insult."); 
+        alert("Couldn't copy your insult.");
       }
 
     });
+
+    downlaodBtn.addEventListener("click", () => {
+
+        const content =
+    `REPO REAPER ☠️
+    =-=-=-=-=-=-=-=-=-==-=-=-=-=
+
+    Repository:
+    ${url}
+
+    Generated:
+    ${new Data().tolocalString()}
+    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+    ${roast}
+    `;
+
+        const blob = new Blob([content],{
+            type: "text/plain"
+        });
+
+        const file = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+
+        a.herf = file;
+        a.download
+    })
 
 
     button.disabled = false;
