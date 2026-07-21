@@ -112,7 +112,6 @@ button.addEventListener("click", async () => {
             })
         });
 
-w
         if (!streamResponse.ok || !streamResponse.body) {
             roastOutput.innerHTML = `
                 <h2>Gian hoo appp</h2>
