@@ -153,6 +153,7 @@ button.addEventListener("click", async () => {
             <div class="roast-actions">
                 <button id="copy-btn">Copy Roast</button>
                 <button id="download-btn">Download Roast</button>
+                <button id="listen-btn">🔊 Listen Roast</button>
             </div>
 
             <div id="roast-output"></div>
@@ -164,8 +165,10 @@ button.addEventListener("click", async () => {
 
     const copyBtn = document.getElementById("copy-btn");
     const downloadBtn = document.getElementById("download-btn");
+    const listenBtn = document.getElementById("listen-btn");
     copyBtn.style.display = "none";
     downloadBtn.style.display = "none";
+    listenBtn.style.display = "none";
 
     const streamResponse = await fetch("/stream", {
       method: "POST",
@@ -227,6 +230,7 @@ button.addEventListener("click", async () => {
     }
     copyBtn.style.display = "inline-block";
     downloadBtn.style.display = "inline-block";
+    listenBtn.style.display = "inline-block";
 
     copyBtn.addEventListener("click", async () => {
 
@@ -251,7 +255,7 @@ button.addEventListener("click", async () => {
       console.log(roast);
 
       const content =
-    `REPO REAPER ☠️
+        `REPO REAPER ☠️
     =-=-=-=-=-=-=-=-=-==-=-=-=-=
 
     Repository:
@@ -269,9 +273,7 @@ button.addEventListener("click", async () => {
       });
 
       const file = URL.createObjectURL(blob);
-
       const a = document.createElement("a");
-
       a.href = file;
       a.download = "repo-roast.txt";
 
@@ -283,31 +285,63 @@ button.addEventListener("click", async () => {
 
     });
 
+    listenBtn.addEventListener("click", async () => {
 
-      button.disabled = false;
-      button.innerHTML = defaultButtonText;
-      input.disabled = false;
-    }
+      listenBtn.disabled = true;
+      listenBtn.innerHTML = "🎙 Generating voice...";
+      try {
+
+        const response = await fetch("/tts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            text: roast
+          })
+        });
+
+        const blob = await response.blob();
+        const audioUrl = URL.createObjectURL(blob);
+        const audio = new Audio(audioUrl);
+        audio.play();
+        audio.onended = () => {
+          URL.revokeObjectURL(audioUrl);
+        };
+
+      } catch (err) {
+        console.error(err);
+        alert("Repo Reaper lost his voice.");
+      }
+
+      listenBtn.disabled = false;
+      listenBtn.innerHTML = "🔊 Listen Roast";
+    });
+
+    button.disabled = false;
+    button.innerHTML = defaultButtonText;
+    input.disabled = false;
+  }
 
 
 
   catch (error) {
-      console.error(error);
+    console.error(error);
 
-      clearInterval(progressInterval);
+    clearInterval(progressInterval);
 
-      result.innerHTML = `
+    result.innerHTML = `
         <div class="error-card">
             <h2>☠️ Repo Reaper tripped over your code.</h2>
             <p>${error.message}</p>
         </div>
         `;
 
-      button.disabled = false;
-      button.innerHTML = defaultButtonText;
-      input.disabled = false;
-    }
-  });
+    button.disabled = false;
+    button.innerHTML = defaultButtonText;
+    input.disabled = false;
+  }
+});
 
 
 // Validate the GitHub url
