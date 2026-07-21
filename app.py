@@ -75,6 +75,7 @@ def stream():
 
     data = request.get_json()
     repo_url = data.get("url", "")
+
     start = time.time()
 
     if repo_url in repo_cache:
@@ -110,6 +111,7 @@ def tts():
     text = data.get("text", "")
 
     audio = generate_speech(text)
+
     return Response(
         audio,
         mimetype="audio/mpeg"
