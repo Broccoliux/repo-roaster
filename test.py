@@ -8,3 +8,4 @@ response = client.models.generate_content_stream(
 for chunk in response:
     if chunk.text:
         print(chunk.text, end="")
+    
