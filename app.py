@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, Response
 from github import fetch_repo_data, build_repo_context
 from roaster import roast_repo
 from cache import repo_cache
+from tts import generate_speech
 
 import time
 import random
@@ -69,29 +70,50 @@ def repo():
 
 #this is where the Ai will start working
 
-@app.route("/stream", methods=['POST'])
+@app.route("/stream", methods=["POST"])
 def stream():
 
     data = request.get_json()
     repo_url = data.get("url", "")
-
-    #build context or will load from cache, if savedf
-
     start = time.time()
 
     if repo_url in repo_cache:
-
         context = repo_cache[repo_url]
         print("Context: loaded from cache")
-
     else:
         context = build_repo_context(repo_url)
         repo_cache[repo_url] = context
-
         print("Context: Built and cached")
 
     print(f"Context: {time.time() - start:.3f}s")
 
+    try:
+        return Response(
+            roast_repo(context),
+            mimetype="text/plain"
+        )
+
+    except Exception as e:
+        print("Gemini Errors:", e)
+
+        return jsonify({
+            "success": False,
+            "message": random.choice(ERRORS),
+            "error": str(e)
+        }), 500
+
+
+@app.route("/tts", methods=["POST"])
+def tts():
+
+    data = request.get_json()
+    text = data.get("text", "")
+
+    audio = generate_speech(text)
+    return Response(
+        audio,
+        mimetype="audio/mpeg"
+    )
 
 #this streams the Gemini response
 
@@ -123,4 +145,3 @@ def stream():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
