@@ -1,3 +1,4 @@
+"""
 from dotenv import load_dotenv
 from google import genai
 import os
@@ -95,3 +96,8 @@ Repository:
     for chunk in response:
         if chunk.text:
             yield chunk
+"""
+
+from google import genai
+from dotenv import load_dotenv
+import os
