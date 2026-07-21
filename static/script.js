@@ -9,106 +9,107 @@ console.log("NEW SCRIPT LOADED");
 
 button.addEventListener("click", async () => {
 
-    const url = input.value.trim();
+  const url = input.value.trim();
 
-    // Empty input
-    if (url === "") {
-        alert("mera dimag na shat kar masalli")
-        return;
-    }
+  // Empty input
+  if (url === "") {
+    alert("mera dimag na shat kar masalli")
+    return;
+  }
 
-    
-    if (!isValidGitHubUrl(url)) {
+
+  if (!isValidGitHubUrl(url)) {
     alert("Akal ni tare pee. Janwar, GitHub repo daal.");
     return;
-}
+  }
 
-button.disabled = true;
-button.innerHTML = "🔥 boiling iron";
-input.disabled = true;
+  button.disabled = true;
+  button.innerHTML = "🔥 boiling iron";
+  input.disabled = true;
 
-    // Loading message
+  // Loading message
 
-    result.innerHTML = `
+  result.innerHTML = `
          <h2 id="loading-text">🔥 Preparing your funeral...</h2>
-         
+
          <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
-        
+
         <p id="progress-percent">0%</p>
 
         `;
 
-        const progressBar = document.getElementById("progress-bar");
-        const progressPercent = document.getElementById("progress-percent");
-        const loadingText = document.getElementById("loading-text");
+  const progressBar = document.getElementById("progress-bar");
+  const progressPercent = document.getElementById("progress-percent");
+  const loadingText = document.getElementById("loading-text");
 
-        let progress = 0;
+  let progress = 0;
 
-        const loadingMessages = [
-            "🔍 Stalking your repo...",
-            "📂 Reading your crimes...",
-            "🧠 Teaching Gemini to hate you...",
-            "💀 Preparing psychological damage...",
-            "🔥 Loading insults..."
-        ];
-        
-        const progressInterval = setInterval(() => {
-        
-            if (progress < 95) {
-                progress += Math.random() * 7;
-            
-                progressBar.style.width = progress + "%";
-                progressPercent.textContent = Math.floor(progress) + "%";
-            }
-        
-            loadingText.textContent =
-                loadingMessages[Math.floor(progress / 20)] || "🔥 Almost there...";
-        
-        }, 250);              
+  const loadingMessages = [
+    "🔍 Stalking your repo...",
+    "📂 Reading your crimes...",
+    "🧠 Teaching Gemini to hate you...",
+    "💀 Preparing psychological damage...",
+    "🔥 Loading insults..."
+  ];
 
-        
-    try {
+  const progressInterval = setInterval(() => {
 
-        // fetch repository information
+    if (progress < 95) {
+      progress += Math.random() * 7;
 
-        const repoResponse = await fetch("/repo", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                url: url
-            })
-        });                                                              
+      progressBar.style.width = progress + "%";
+      progressPercent.textContent = Math.floor(progress) + "%";
+    }
 
-        const data = await repoResponse.json();
+    loadingText.textContent =
+      loadingMessages[Math.floor(progress / 20)] || "🔥 Almost there...";
+
+  }, 250);
 
 
-        if (!repoResponse.ok || !data.success) {
+  try {
 
-            clearInterval(progressInterval);
+    // fetch repository information
 
-            button.disabled = false;
-            button.innerHTML = defaultButtonText;
-            input.disabled = false;
+    const repoResponse = await fetch("/repo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        url: url
+      })
+    });
 
-            result.innerHTML = `
+    const data = await repoResponse.json();
+
+
+    if (!repoResponse.ok || !data.success) {
+
+      clearInterval(progressInterval);
+
+      button.disabled = false;
+      button.innerHTML = defaultButtonText;
+      input.disabled = false;
+
+      result.innerHTML = `
             <h2>${data.message}</h2>
             `;
 
-            return;
+      return;
 
-        }
+    }
 
-        clearInterval(progressInterval);
+    clearInterval(progressInterval);
 
-        progressBar.style.width = "100%";
-        progressPercent.textContent = "100%";
-        // drawing the repo info
+    progressBar.style.width = "100%";
+    progressPercent.textContent = "100%";
+    loadingText.textContent = "☠️ Roast ready.";
+    // drawing the repo info
 
-        result.innerHTML = `
+    result.innerHTML = `
             <h2>📦 ${data.repo.name}</h2>
 
             <div class="repo-stats">
@@ -156,138 +157,138 @@ input.disabled = true;
             <div id="roast-output"></div>
         `;
 
-        //stram Roast
+    //stram Roast
 
-        const roastOutput = document.getElementById("roast-output");
+    const roastOutput = document.getElementById("roast-output");
 
-        const copyBtn = document.getElementById("copy-btn");
-        copyBtn.style.display = "none";
+    const copyBtn = document.getElementById("copy-btn");
+    copyBtn.style.display = "none";
 
-        const streamResponse = await fetch("/stream", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                url: url
-            })
-        });
+    const streamResponse = await fetch("/stream", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        url: url
+      })
+    });
 
-        if (!streamResponse.ok) {
-            const error = await streamResponse.json();
+    if (!streamResponse.ok) {
+      const error = await streamResponse.json();
 
-            roastOutput.innerHTML = `
-            
+      roastOutput.innerHTML = `
+
                 <div class="error-card">
                     <h2>${error.message}</h2>
                 </div>
             `;
 
-            button.disabled = false;
-            button.innerHTML = defaultButtonText;
-            input.disabled = false;
+      button.disabled = false;
+      button.innerHTML = defaultButtonText;
+      input.disabled = false;
 
-            return;
-        }
+      return;
+    }
 
-        if (!streamResponse.body) {
+    if (!streamResponse.body) {
 
-            roastOutput.innerHTML = `
+      roastOutput.innerHTML = `
                 <div class="error-card">
                     <h2>No response from Repo Reaper.</h2>
                 </div>
             `;
 
-            button.disabled = false;
-            button.innerHTML = defaultButtonText;
-            input.disabled = false;
+      button.disabled = false;
+      button.innerHTML = defaultButtonText;
+      input.disabled = false;
 
-            return;
-        }
+      return;
+    }
 
 
-        const reader = streamResponse.body.getReader();
-        const decoder = new TextDecoder();
+    const reader = streamResponse.body.getReader();
+    const decoder = new TextDecoder();
 
-        let roast = "";
+    let roast = "";
 
-        while (true) {
-            const { done, value } = await reader.read();
+    while (true) {
+      const { done, value } = await reader.read();
 
-            if (done) break;
-            roast += decoder.decode(value, {
-                stream: true
-            });
+      if (done) break;
+      roast += decoder.decode(value, {
+        stream: true
+      });
 
-            roastOutput.innerHTML = renderRoast(roast);
-        }
-        copyBtn.style.display = "inline-block";
+      roastOutput.innerHTML = renderRoast(roast);
+    }
+    copyBtn.style.display = "inline-block";
 
-        copyBtn.addEventListener(async () => {
+    copyBtn.addEventListener("click", async () => {
 
-        try {
+      try {
 
-            await navigator.clipboard.writeText(roast);
-            copyBtn.innerHTML = "✅ Copied!";
+        await navigator.clipboard.writeText(roast);
+        copyBtn.innerHTML = "✅ Copied!";
 
-            setTimeout(() => {
-                copyBtn.innerHTML = "📋 Copy Roast";
-            }, 2000);
+        setTimeout(() => {
+          copyBtn.innerHTML = "📋 Copy Roast";
+        }, 2000);
 
-        }
+      }
 
-        catch {
-            alert("Couldn't copy your insult.");
-        }
+      catch {
+        alert("Couldn't copy your insult."); 
+      }
 
     });
 
-    
-        button.disabled = false;
-        button.innerHTML = defaultButtonText;
-        input.disabled = false;
-    }
 
-    
+    button.disabled = false;
+    button.innerHTML = defaultButtonText;
+    input.disabled = false;
+  }
 
-    catch (error) {
-        console.error(error);
 
-        clearInterval(progressInterval);
 
-        result.innerHTML = `
+  catch (error) {
+    console.error(error);
+
+    clearInterval(progressInterval);
+
+    result.innerHTML = `
         <div class="error-card">
             <h2>☠️ Repo Reaper tripped over your code.</h2>
             <p>${error.message}</p>
         </div>
         `;
 
-        button.disabled = false;
-        button.innerHTML = defaultButtonText;
-        input.disabled = false;
-    }
+    button.disabled = false;
+    button.innerHTML = defaultButtonText;
+    input.disabled = false;
+  }
 });
 
 
 // Validate the GitHub url
 
 function isValidGitHubUrl(url) {
-    const pattern = /^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/;
-    return pattern.test(url);
+  const pattern = /^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/;
+  return pattern.test(url);
 }
 
 
 // stream roast will be converted into cards
 function renderRoast(roast) {
-    const sections = roast
-        .trim()
-        .split(/\n(?=[💀📂🐍📝🤡☠️])/);
+  const sections = roast
+    .trim()
+    .split(/\n(?=[💀📂🐍📝🤡☠️])/);
 
-    return sections
-        .map(section => `
+  return sections
+    .map(section => `
             <div class="roast-card">
                 ${section.replace(/\n/g, "<br>")}
             </div>
         `)
-        .join("");
+    .join("");
 }
