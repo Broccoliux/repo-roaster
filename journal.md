@@ -10,7 +10,7 @@ i have made tye files now making the virtual env.
 the virtual env is now set. now i haev to install the needed libs and pakages
 
 
-i am done with all packages and everthing , i needed now gonna build. 
+i am done with all packages and everthing , i needed now gonna build.
 
 just tested everything is working very well now
 
@@ -72,12 +72,12 @@ ohh the reason wwas that the repo i was trying to clone was soo big soo it took 
 
 cuz the repo is taking too long to be loned soo i need to find solution to this, cuzz this is too waste of time.
 
-soo this is it for today, will start working from tmro i dont have time to waste. i need to get to the SIN no mattter, what. 
+soo this is it for today, will start working from tmro i dont have time to waste. i need to get to the SIN no mattter, what.
 
 i have chenged the clone process now it will only clone the depth 1 means only lates commits. but still for BIG repo like [text](https://github.com/different-ai/openwork) it is taking soo much time.
 
-idk how i am gonna do it ut i will definatly wont leave it like this, i will make it work in secs, or ms, but idk how, or if this is possible or not. 
-soo byeeee. for today. 
+idk how i am gonna do it ut i will definatly wont leave it like this, i will make it work in secs, or ms, but idk how, or if this is possible or not.
+soo byeeee. for today.
 
 -----------------------------
 
@@ -90,7 +90,7 @@ today gonna make the AI start roasting
 
 but even before that we are gonna find the solution for the late cloning, id this very bad and will give bad impresion.
 
-i am going with completely new appproch where, i will not clone the repo instead we will go with GitHub APi. i have 5000 requeest per hr so it will be enough, 
+i am going with completely new appproch where, i will not clone the repo instead we will go with GitHub APi. i have 5000 requeest per hr so it will be enough,
 
 ```
 For example, if one roast uses:
@@ -134,7 +134,7 @@ Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster
 $ python test.py
 Hello World!
 
-(venv) 
+(venv)
 Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
 
 ```
@@ -171,14 +171,14 @@ templates
 templates/index.html
 terminal-wakatime.ps1
 test.py
-(venv) 
+(venv)
 Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
 ```
 
 
 ohh my yesss we rolllin
 
-rn i am trying to store the fetch the files data no just the name. 
+rn i am trying to store the fetch the files data no just the name.
 
 ohh yeaaaaaa i did it.
 
@@ -242,7 +242,7 @@ def clone_repo(repo_url):
 ==== github.py ====
 from dotenv import load_dotenv
 import base64
-import os 
+import os
 load_dotenv()
 
 TOKEN = os.getenv("GITHUB_TOKEN")
@@ -258,17 +258,17 @@ def extract_repo_info(url):
 def fetch_repo_data(url):
     owner, repo = extract_repo_info(url)
     api_url = f"https://api.github.com/repos/{owner}/{repo}"
-    
+
     headers = {
         "Authorization": f"token {TOKEN}"
     }
     response = requests.get(api_url, headers=headers)
 
     data = response.json()
-    
+
     if response.status_code !=200:
         return None
-    
+
 
     repo_info = {
         "name": (data["name"]),
@@ -309,7 +309,7 @@ def fetch_file_content(url, file_path):
 
     if response.status_code !=200:
         return None
-    
+
     data = response.json()
 
     return base64.b64decode(data["content"]).decode("utf-8", errors="ignore")
@@ -405,7 +405,7 @@ button.addEventListener("click", async () => {
         <p>📝 ${data.repo.description || "No description provided."}</p>
     `;
 
-}); 
+});
 
 function isValidGitHubUrl(url) {
     const pattern = /^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/;
@@ -491,9 +491,9 @@ content = fetch_file_content(
 )
 
 print(content)
-(venv) 
+(venv)
 Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
-$ 
+$
 
 ```
 
@@ -526,7 +526,7 @@ context lenght: 6612
 let me check the total context lenght for my repo. then it will tell us if oour repo is small or the problem is some where else
 
 
-my test repo have only 
+my test repo have only
 TOTAL: 6215
 test.py 129
 
@@ -583,7 +583,7 @@ TOTAL: 50715
 resources/symbols/OpenESC_20X20-main/licensing/README.md 695
 
 TOTAL: 51410
-(venv) 
+(venv)
 
 ```
 
@@ -601,7 +601,7 @@ JSON Response
 
 ```
 
-what my goal is 
+what my goal is
 ```
 GitHub URL
       ↓
@@ -623,7 +623,7 @@ i think i will go with.
 
 i think i will go with the NVIDIA free API, like GLM 4 or KIMI 2.5
 
-hnow gonna get the API from the NVIDIA. 
+hnow gonna get the API from the NVIDIA.
 why the hell they asks too much.
 its taking soo much time. idk if this is my internet
 
@@ -646,7 +646,7 @@ greens means i completed that and while means i have to do it.
 ⬜ Display on Website
 ⬜ Make it look 🔥
 ```
-bruh finally got the API key from google. 
+bruh finally got the API key from google.
 
 pip installed now gonna start the real thinbg
 i amgetting the error that the model i am ttrying to use is not for free users.
@@ -714,9 +714,9 @@ ohh man its working
 Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
 $ python gemini_test.py
 Hello, I hope you are having a wonderful day!
-(venv) 
+(venv)
 Smart Tech@DESKTOP-3V1CTK6 MINGW64 /f/OneDrive/Desktop/cloned repos/repo-roaster (main)
-$ 
+$
 ```
 now its time for fun part.
 
@@ -732,7 +732,7 @@ ohh man this shit that i made roasted mee fahh.
 u should must read this
 
 ```
-Oh boy, look what drifted in from the "delusional-projects" bin of GitHub. Grab some popcorn, because we are about to witness a $300 financial ruin speedrun (Any% category). 
+Oh boy, look what drifted in from the "delusional-projects" bin of GitHub. Grab some popcorn, because we are about to witness a $300 financial ruin speedrun (Any% category).
 
 Meet **Dragonfly**—which is a highly ironic name, because this thing is never leaving the ground. It’s a custom Flight Controller + ESC All-In-One board that currently has the processing power of a brick.
 
@@ -741,13 +741,13 @@ Let’s dissect this absolute trainwreck of a repository.
 ---
 
 ### 1. WHY THE HECK DID YOU BUILD THIS?
-You spent **$250 to $300** to design a custom 4-layer PCB using prehistoric STM32F405 silicon, just so you could say you built it "from scratch." 
+You spent **$250 to $300** to design a custom 4-layer PCB using prehistoric STM32F405 silicon, just so you could say you built it "from scratch."
 Bro, a SpeedyBee AIO costs $45 and actually flies. You built a literal fire hazard in KiCad because you wanted to look like Tony Stark in your bedroom, but instead, you ended up with a $300 paperweight that is **"not reqady to flash"** (yes, you even misspelled "ready" in your main status update. Peak professionalism).
 
 ---
 
 ### 2. ARCHITECTURE: The "I Can't Commit" Special
-You claim this is "designed for me by me." If so, why does your repository contain an *entirely separate open-source project* (`OpenESC_20X20-main`) inside your `resources/symbols` folder? 
+You claim this is "designed for me by me." If so, why does your repository contain an *entirely separate open-source project* (`OpenESC_20X20-main`) inside your `resources/symbols` folder?
 * Did you actually design an ESC, or did you just copy-paste someone else's 6-layer design, realize you couldn't route 6 layers, downscale it to 4 layers, and pray the EMF noise doesn't instantly reboot your gyro the moment you arm the motors?
 * You are running an **STM32F405** in 2026. That chip belongs in a museum, not on a "freestyle" quad. Enjoy those looptimes.
 
@@ -762,7 +762,7 @@ Your repository’s folder structure looks like a digital landfill.
 ---
 
 ### 4. CODE SMELLS: The "V-Beta Hygiene Fix" Horror Show
-Let's talk about `v_beta_hygiene_fix.py`. 
+Let's talk about `v_beta_hygiene_fix.py`.
 ```python
 # Operates on .kicad_sch files in BINARY MODE. Touches only the bytes inside
 # property values; never modifies whitespace...
@@ -783,12 +783,12 @@ If you can’t even proofread the main status line of your repository, how can w
 * **Firmware:** *None.*
 * **Unified Target:** *Non-existent.*
 * **Code:** *Literally just a list of parts.*
-This isn’t a flight controller repository; this is a **KiCad shopping list**. You have committed zero lines of actual configuration. You don't have a Betaflight unified target; you have a `notes.md` file with a "pin mapping reference." 
+This isn’t a flight controller repository; this is a **KiCad shopping list**. You have committed zero lines of actual configuration. You don't have a Betaflight unified target; you have a `notes.md` file with a "pin mapping reference."
 
 ---
 
 ### Summary of the Roast
-You designed a custom board, bought the components, 3D printed a frame, and set up a GitHub repo, all before checking if the firmware would even compile or flash. 
+You designed a custom board, bought the components, 3D printed a frame, and set up a GitHub repo, all before checking if the firmware would even compile or flash.
 
 You built a **$300 simulator of a drone** that exists only in Fusion 360 and your dreams. Clean up your folder structure, delete the stolen sub-repos, learn how to use KiCad's footprint editor instead of writing terrifying Python scripts, and please... buy a smoke stopper before you plug this thing in
 ```
@@ -799,7 +799,7 @@ yooooooo i back,
 
 actully i didnt reset i liged 1 extra hr for macondo to maintain my streek, rn it is 19 days yayyayayayy.
 
-it is taking too long to response, i have write the code to see how much time it takes to print the output, 
+it is taking too long to response, i have write the code to see how much time it takes to print the output,
 
 ohh man this is teribal, and this is was my repo that wasnt event that long. but still gemini took 55secs
 
@@ -906,7 +906,7 @@ i have made the prompt soo bruatal that this is mt limit i cant go any further t
 
 now lets check if this gives what we want.
 
-bro wtf 
+bro wtf
 
 ```
 Your "July 10" firmware deadline is already dead, just like your future in engineering.
@@ -930,7 +930,7 @@ fahh, bro i was writing the code in js with html syntan is had to write that cod
 i messed up the code while debigging, faggg
 
 now i am hitting the rate limit for gemini api
-it is printing this 
+it is printing this
 
 ```
 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 7.873561735s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '7s'}]}}
@@ -954,10 +954,10 @@ i did something again and now it is only giving this,
 n)
 $ python app.py
 API KEY: *************************************************
-(venv) 
+(venv)
 ```
 
-next step is 
+next step is
 
 cache repo context so if someone roasts the same repo again, u skip GitHub fetching and send the cached context dorectly to gemini.
 
@@ -1029,7 +1029,7 @@ it works fahhh.
 
 today goona lock in sooo hard, gonna slam everone in leaderboard today. ZEHAHAHAHH
 
-bruh just rewrote full JS , there was too many errors and i made the very big chnages in the code. 
+bruh just rewrote full JS , there was too many errors and i made the very big chnages in the code.
 
 damn man debugging is hell.
 
@@ -1091,7 +1091,7 @@ but AI still sucks.
 
  VS code agent is working i hope it will pinout the problem, as much i know this is related to the the google server, sometimes it shows that APi is wrong and sometime it shows that google servers are down. fahhhhhhhhhh
 
-agent said me that ur api might be wrong or the google is blocking idk what the heck is this. the api works when we print hello statment. 
+agent said me that ur api might be wrong or the google is blocking idk what the heck is this. the api works when we print hello statment.
 
 he said try with new API this is the only know reason for the faliure, lets see if API changes anything.
 
@@ -1201,11 +1201,11 @@ i tested this repo and it been a whole min and it is still get the all the files
 
 now i am hitting slow internet error. fahhhhhhhhhhhhh
 
-my timeout was only 15secs i have chnaged it to 30, it will be ,much better. 
+my timeout was only 15secs i have chnaged it to 30, it will be ,much better.
 
 i  have made the button disabler. then the roast is getting genrated the buttons get disabled and is not click able, means no spaming.
 
-now i have added some  more cool UI tweeks, such as 
+now i have added some  more cool UI tweeks, such as
 
 if the repo is invalid it will show
 ```
@@ -1228,3 +1228,32 @@ i have made the loading animation it is not perfect, but it looks good.
 ahh my api again is finshed for today.
 
 ii changed the api and now it showing that it is under high demand.
+
+bro my hactime is not working idk why, i am afraid that i wont be able to make it.
+
+i added the  copy button and im having error in it,
+
+just fixed the error and  now its working fine yayayayayayy
+
+ohh it copy tooo
+
+```
+💀 Biggest Crime
+This absolute biohazard of a repository looks like it was code-vomited by a sleep-deprived toddler who just discovered Ctrl+C and Ctrl+V. You really thought you cooked with this architecture, but you actually just created a digital EPA disaster zone that violates basic human rights. I’ve seen smarter logic in a malfunctioning microwave than whatever brain-dead spaghetti mess you tried to construct here, you absolute freak.
+
+📂 Folder Structure
+Your folder layout is a certified psychological thriller designed to make anyone with a functioning brain cell weep. Files are scattered around like a teenager's dirty laundry, forcing people to play hide-and-seek just to find where the actual entry point is. Navigating this absolute circus of a directory makes me want to throw my router out the window, you chaotic moron.
+
+🐍 Code Smells
+The sheer volume of hardcoded values, nested if-else loops, and copy-pasted StackOverflow trash in here is actually criminal. It’s giving major "first week of coding bootcamp" energy, except even a bootcamp grad would have the shame to delete this before committing. Your functions are so bloated they need their own zip codes, you lazy bastard.
+
+📝 Documentation & Naming
+Your README is a desolate wasteland that explains absolutely nothing, probably because you’re too embarrassed to admit what this garbage pile actually does. As for your variable naming, calling everything `temp`, `data`, or `x` is not "minimalist," it's a desperate cry for help from a terminal dumbass. Reading your code is like trying to translate hieroglyphics written by a drunk caveman.
+
+🤡 Reality Check
+Why did you even waste electricity hosting this useless, half-baked project that solves a problem literally nobody has? This entire repo is a monument to wasted potential and proof that anyone with a keyboard can pollute the open-source community. Delete your GitHub account immediately, touch some grass, and apologize to your router for wasting its bandwidth.
+
+☠️ Final Verdict
+This repo is a digital war crime that needs to be purged from the internet immediately to save humanity's collective IQ.
+```
+
