@@ -245,8 +245,8 @@ button.addEventListener("click", async () => {
 
     downlaodBtn.addEventListener("click", () => {
 
-        const content =
-    `REPO REAPER ☠️
+      const content =
+        `REPO REAPER ☠️
     =-=-=-=-=-=-=-=-=-==-=-=-=-=
 
     Repository:
@@ -259,16 +259,22 @@ button.addEventListener("click", async () => {
     ${roast}
     `;
 
-        const blob = new Blob([content],{
-            type: "text/plain"
-        });
+      const blob = new Blob([content], {
+        type: "text/plain"
+      });
 
-        const file = URL.createObjectURL(blob);
-        const a = document.createElement("a");
+      const file = URL.createObjectURL(blob);
+      const a = document.createElement("a");
 
-        a.herf = file;
-        a.download
-    })
+      a.herf = file;
+      a.download = "repo-roast.txt";
+
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      URL.revokeObjectURL(file);
+    });
 
 
     button.disabled = false;
