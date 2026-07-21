@@ -1204,3 +1204,16 @@ now i am hitting slow internet error. fahhhhhhhhhhhhh
 my timeout was only 15secs i have chnaged it to 30, it will be ,much better. 
 
 i  have made the button disabler. then the roast is getting genrated the buttons get disabled and is not click able, means no spaming.
+
+now i have added some  more cool UI tweeks, such as 
+
+if the repo is invalid it will show
+```
+Can't find that garbage.
+```
+
+if the the internet is disconnected
+```
+Repo Reaper tripped over your code
+```
+
