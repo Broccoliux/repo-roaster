@@ -1,7 +1,7 @@
 const input = document.getElementById("repo-url");
 const button = document.getElementById("roast-btn");
 const result = document.getElementById("result");
-
+const defaultButtonText = button.innerHTML;
 
 console.log("NEW SCRIPT LOADED");
 
@@ -9,6 +9,10 @@ console.log("NEW SCRIPT LOADED");
 button.addEventListener("click", async () => {
 
     const url = input.value.trim();
+
+    button.disabled = true;
+    button.innerHTML = "🔥 Bolling iron"
+    input.disabled = true;
 
     // Empty input
     if (url === "") {
@@ -136,6 +140,7 @@ button.addEventListener("click", async () => {
         }
     }
 
+
     catch (error) {
         console.error(error);
 
@@ -145,6 +150,10 @@ button.addEventListener("click", async () => {
         `;
     }
 });
+
+button.disabled  = false;
+button.innerHTML = defaultButtonText;
+input.disabled = false;
 
 // Validate the GitHub url
 
