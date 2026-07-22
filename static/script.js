@@ -8,8 +8,10 @@ console.log("NEW SCRIPT LOADED");
 
 
 button.addEventListener("click", async () => {
+  speechSynthesis.cancel();
 
   const url = input.value.trim();
+
 
   // Empty input
   if (url === "") {
@@ -285,22 +287,58 @@ button.addEventListener("click", async () => {
 
     });
 
-    listenBtn.addEventListener("click", () => {
 
-        if (!roast.trim()) {
-            alert("nothing to roast yet.")
-            return;
+    listenBtn.addEventListener("click", async () => {
+
+      if (!roast.trim()) {
+        alert("Nothing to roast yet.");
+        return;
+      }
+
+      speechSynthesis.cancel();
+
+      const speech = new SpeechSynthesisUtterance(roast);
+
+      speech.rate = 1;
+      speech.pitch = 0.9;
+      speech.volume = 1;
+
+      await new Promise(resolve => {
+        if (speechSynthesis.getVoices().length) {
+          resolve();
         }
-        speechSynthesis.cancel();
+        else {
+          speechSynthesis.onvoiceschanged = resolve;
+        }
+      });
 
-        const speech = new SpeechSynthesisUtterance(roast);
+      const voices = speechSynthesis.getVoices();
 
-        speech.rate = 1;
-        speech.pitch = 0.9;
-        speech.volume = 1;
+      const voice =
+        voices.find(v => v.lang.startsWith("en") && v.name.includes("Google")) ||
+        voices.find(v => v.lang.startsWith("en")) ||
+        voices[0];
 
-        const ggtrgftcftrtrttdfdfrgfrebdgfgcxgfsr
-    })
+      if (voice) {
+        speech.voice = voice;
+      }
+
+      listenBtn.disabled = true;
+      listenBtn.innerHTML = "🔊 Speaking...";
+
+      speech.onend = () => {
+        listenBtn.disabled = false;
+        listenBtn.innerHTML = "🔊 Listen Roast";
+      };
+
+      speech.onerror = () => {
+        listenBtn.disabled = false;
+        listenBtn.innerHTML = "🔊 Listen Roast";
+      };
+
+      speechSynthesis.speak(speech);
+
+    });
 
     button.disabled = false;
     button.innerHTML = defaultButtonText;
