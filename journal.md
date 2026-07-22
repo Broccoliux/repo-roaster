@@ -1271,3 +1271,7 @@ i am going to use the eleven labs api, but i dont know how i am gonna get that m
 almost done
 
 ohhh bro its not working, idk why but its not i will try chaning the voice id, or maybe rey something new,
+
+i haev a really bad news that we cant use eleven labs api cuz it is paid, idk why but i have used it before for freee.
+
+now gonna use the local  voice of devices., or maybe ditch this feature.
