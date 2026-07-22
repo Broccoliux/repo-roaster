@@ -285,38 +285,22 @@ button.addEventListener("click", async () => {
 
     });
 
-    listenBtn.addEventListener("click", async () => {
+    listenBtn.addEventListener("click", () => {
 
-      listenBtn.disabled = true;
-      listenBtn.innerHTML = "🎙 Generating voice...";
-      try {
+        if (!roast.trim()) {
+            alert("nothing to roast yet.")
+            return;
+        }
+        speechSynthesis.cancel();
 
-        const response = await fetch("/tts", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            text: roast
-          })
-        });
+        const speech = new SpeechSynthesisUtterance(roast);
 
-        const blob = await response.blob();
-        const audioUrl = URL.createObjectURL(blob);
-        const audio = new Audio(audioUrl);
-        audio.play();
-        audio.onended = () => {
-          URL.revokeObjectURL(audioUrl);
-        };
+        speech.rate = 1;
+        speech.pitch = 0.9;
+        speech.volume = 1;
 
-      } catch (err) {
-        console.error(err);
-        alert("Repo Reaper lost his voice.");
-      }
-
-      listenBtn.disabled = false;
-      listenBtn.innerHTML = "🔊 Listen Roast";
-    });
+        const ggtrgftcftrtrttdfdfrgfrebdgfgcxgfsr
+    })
 
     button.disabled = false;
     button.innerHTML = defaultButtonText;
