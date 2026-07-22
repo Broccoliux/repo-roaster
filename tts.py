@@ -6,7 +6,7 @@ load_dotenv()
 
 API_KEY = os.getenv("ELEVENLABS_API_KEY")
 
-VOICE_ID = "21m00Tcm4TlvDq8ikWAM"
+VOICE_ID = "9yzdeviXkFddZ4Oz8Mok"
 
 def generate_speech(text):
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{VOICE_ID}"
@@ -26,6 +26,7 @@ def generate_speech(text):
         headers=headers
     )
 
+    print(response.status_code)
+    print(response.text)
+
     return response.content
-
-
