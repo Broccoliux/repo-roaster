@@ -27,4 +27,5 @@ def generate_speech(text):
     )
 
     return response.content
-    return response.content
+
+
