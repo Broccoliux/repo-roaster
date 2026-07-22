@@ -1270,4 +1270,4 @@ next i am going to make the optiion so the user can listen the roast
 i am going to use the eleven labs api, but i dont know how i am gonna get that mocking voice
 almost done
 
-ohhh bro its not working
+ohhh bro its not working, idk why but its not i will try chaning the voice id, or maybe rey something new,
