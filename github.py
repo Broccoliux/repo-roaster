@@ -25,7 +25,7 @@ def extract_repo_info(url):
 
     if len(parts) < 2:
         return None, None
-    
+
     owner = parts[0]
     repo = parts[1]
 
@@ -146,7 +146,7 @@ def fetch_file_content(url, file_path):
 
     except Exception:
         return None
-    
+
 
 # decide which files are worth sending to gemini
 
@@ -230,7 +230,7 @@ def get_important_files(tree):
             continue
 
     # dont roast our own helper scripts.
-    
+
         if filename == "cloner.py":
             continue
 
@@ -276,7 +276,7 @@ def build_repo_context(url):
             important_files
         )
 
-        for file, content in contents:
+        for file, conftent in contents:
 
             print(file)
 
