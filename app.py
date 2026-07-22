@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify, Response
 from github import fetch_repo_data, build_repo_context
 from roaster import roast_repo
 from cache import repo_cache
-from tts import generate_speech
 
 import time
 import random
@@ -42,7 +41,6 @@ def repo():
     data = request.get_json()
     repo_url = data.get("url", "")
 
-
     start = time.time()
     repo = fetch_repo_data(repo_url)
     print(f"Repo: {time.time() - start:.3f}s")
@@ -79,22 +77,28 @@ def stream():
     start = time.time()
 
     if repo_url in repo_cache:
+
         context = repo_cache[repo_url]
         print("Context: loaded from cache")
+
     else:
+
         context = build_repo_context(repo_url)
         repo_cache[repo_url] = context
+
         print("Context: Built and cached")
 
     print(f"Context: {time.time() - start:.3f}s")
 
     try:
+
         return Response(
             roast_repo(context),
             mimetype="text/plain"
         )
 
     except Exception as e:
+
         print("Gemini Errors:", e)
 
         return jsonify({
@@ -103,47 +107,10 @@ def stream():
             "error": str(e)
         }), 500
 
-
-@app.route("/tts", methods=["POST"])
-def tts():
-
-    data = request.get_json()
-    text = data.get("text", "")
-
-    audio = generate_speech(text)
-
-    return Response(
-        audio,
-        mimetype="audio/mpeg"
-    )
-
-#this streams the Gemini response
-
-# roast_repo() is generator because it uses the ("yield")
-
-# Response() forward every chunk directly
-# to the browser as soon as Gemini sends it.
-
-    try:
-
-        return Response(
-            roast_repo(context),
-            mimetype="text/plain"
-        )
-
-    except Exception as e:
-        print("Gemini Errors:", e)
-
-        return jsonify({
-            "success": False,
-            "message": random.choice(ERRORS),
-            "error": str(e)
-        }), 500
 
 # start Flask server
 
 #debug=True auto reloads the server whenever someone saves the file.
-
 
 if __name__ == "__main__":
     app.run(debug=True)
