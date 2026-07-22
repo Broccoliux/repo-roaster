@@ -1275,3 +1275,11 @@ ohhh bro its not working, idk why but its not i will try chaning the voice id, o
 i haev a really bad news that we cant use eleven labs api cuz it is paid, idk why but i have used it before for freee.
 
 now gonna use the local  voice of devices., or maybe ditch this feature.
+
+ook i write its code, now time to test it.
+
+ok bro, its working i know voice is not too good but still it works
+
+now the google modle is down lol.
+
+hdggfghgfgfhggfgghgfgdtgfgghfggfffgdffdsfdsdffdfdfddsfgdtffdfgfgdsddsaasfgfghgfgfgfhgewhjgfdfddssddsdfyhbz
