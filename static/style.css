@@ -165,3 +165,23 @@ button{
   background: #333;
   color: #fff;
 }
+
+.repo-header{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.repo-avatar{
+    width:72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 3px solid #26da0e;
+    object-fit: cover;
+}
+
+.repo-header p{
+    margin: 4px 0 0;
+    color:#888;
+}
