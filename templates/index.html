@@ -1,46 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Repo Roaster</title>
 
-    <title>REPO ROASTER</title>
-
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <main>
+  <main>
 
-        <section class="hero">
-            <h1>🔥 REPO ROASTER</h1>
+    <section class="hero">
+      <h1>🔥 Repo Roaster</h1>
 
-            <p>Dont u dare to drop u sh*t, u gonna destroyed</p>
+      <p>Dont u dare to drop u sh*t, u gonna destroyed</p>
 
-            <input
+      <input type="text" id="repo-url" placeholder="https://github.com/owner/repository">
 
-                type="text"
-                id="repo-url"
-                placeholder="https://github.com/owner/repository"
-                
-            >
+      <button id="roast-btn">
+        Death sentence
+      </button>
+    </section>
 
-            <button id="roast-btn">
-                Death sentence 
-            </button>
-        </section>
+    <section id="result"></section>
 
-        <section id="result"></section>
+  </main>
 
-        </main>
+  <div id="warning-modal" class="warning-overlay">
 
-        <!-- to  load js after the HTML-->
-        <script src="{{ url_for('static', filename = 'script.js')}}"></script>
+    <div class="warning-box">
 
+      <h1>☠️ Emotional Damage Waiver</h1>
 
+      <p>
+        Repo Reaper exists for one purpose:
+        <strong>to brutally roast your repository.</strong>
+      </p>
+
+      <p>
+        The insults can get pretty extreme. Your code may be called horrible things.
+      </p>
+
+      <ul>
+        <li>Your feelings may get hurt.</li>
+        <li>Your code may never recover.</li>
+        <li>You accept full emotional responsibility.</li>
+      </ul>
+
+      <label class="agree-box">
+        <input type="checkbox" id="agree-checkbox">
+        I understand my repository is about to get cooked.
+      </label>
+
+      <div class="warning-buttons">
+
+        <button id="leave-btn">
+          ❌ I'm too fragile
+        </button>
+
+        <button id="accept-btn" disabled>
+          🔥 Roast my repo
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- to load js after the HTML -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  <div id="jumpscare" class="hidden">
+
+      <img
+          id="monster"
+          src="/static/images/jin.jpg"
+          alt="monster"
+        >
+  </div>
 </body>
+
 </html>
