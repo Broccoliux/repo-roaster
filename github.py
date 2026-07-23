@@ -66,7 +66,7 @@ def fetch_repo_data(url):
         "stars": data["stargazers_count"],
         "forks": data["forks_count"],
         "owner": data["owner"]["login"],
-        
+        "avatar": data["owner"]["avatar_url"],
     }
 
     return repo_info
