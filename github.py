@@ -43,16 +43,8 @@ def fetch_repo_data(url):
         return None
 
     api_url = f"https://api.github.com/repos/{owner}/{repo}"
-    headers = {
-        "Authorization": f"token {TOKEN}"
-    }
-    response = requests.get(
-        api_url,
-        headers=headers,
-        timeout=30
-    )
-
-    # Repo doesnt exists or github rejected the requests.
+    headers = {"Authorization": f"token {TOKEN}"}
+    response = requests.get(api_url, headers=headers, timeout=30)
 
     if response.status_code != 200:
         return None
@@ -117,20 +109,10 @@ def fetch_file_content(url, file_path):
     if owner is None:
         return None
 
-    api_url = (
-        f"https://api.github.com/repos/"
-        f"{owner}/{repo}/contents/{file_path}"
-    )
+    api_url = f"https://api.github.com/repos/{owner}/{repo}/contents/{file_path}"
+    headers = {"Authorization": f"token {TOKEN}"}
 
-    headers = {
-        "Authorization": f"token {TOKEN}"
-    }
-
-    response = requests.get(
-        api_url,
-        headers=headers,
-        timeout=20
-    )
+    response = requests.get(api_url, headers=headers, timeout=20)
 
     if response.status_code != 200:
         return None
@@ -138,22 +120,13 @@ def fetch_file_content(url, file_path):
     data = response.json()
 
     try:
-        return base64.b64decode(
-            data["content"]
-        ).decode(
-            "utf-8",
-            errors="ignore"
-        )
-
+        return base64.b64decode(data["content"]).decode("utf-8", errors="ignore")
     except Exception:
         return None
 
 
 # decide which files are worth sending to gemini
 
-# i have intentionally skip things like node_modules, build folders
-# build folder and test files because they,re huge
-# and usually useless for roasting.
 def get_important_files(tree):
 
     important = []
@@ -250,7 +223,7 @@ def get_important_files(tree):
     return important
 
 
-# build one large text block that will be sent to gemini.
+# build one big text block to send to the model
 
 # Every important file is downloaded, trimmed and appended
 # into a single context string.
@@ -265,17 +238,8 @@ def build_repo_context(url):
     print("Files:", len(important_files))
     context = ""
 
-    # downloading multiple files simultaneously.
-    # this is much faster then downloading them one-by-one.
     with ThreadPoolExecutor(max_workers=8) as executor:
-
-        contents = executor.map(
-            lambda file: (
-                file,
-                fetch_file_content(url, file)
-            ),
-            important_files
-        )
+        contents = executor.map(lambda file: (file, fetch_file_content(url, file)), important_files)
 
         for file, content in contents:
 
