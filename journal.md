@@ -1300,3 +1300,6 @@ oky now it is working.,
 i have completed it now, now its time to deploy it,
 
 onw thing that i haev used AI in this, somewhere like 27-33%, i had no choise to use cuz i am noob.
+
+
+ohh man finally compled the project
