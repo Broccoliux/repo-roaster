@@ -3,9 +3,9 @@ from google import genai
 import os
 import random
 
-DEBUG=False
-#load variables from the .env file
+DEBUG = False
 
+# Load variables from .env
 load_dotenv()
 
 API_KEYS = [
@@ -14,11 +14,8 @@ API_KEYS = [
     os.getenv("GEMINI_API_KEY_3"),
 ]
 
+# Remove empty keys
 API_KEYS = [key for key in API_KEYS if key]
-
-# Funny messages shown when Gemini dies.
-# Instead of showing Python errors to the user,
-# we roast Gemini for giving up.
 
 ERRORS = [
     "💀 Repo Roaster rage quit. Your repo dealt psychic damage to the AI. Try again in a minute, you freak.",
@@ -28,16 +25,16 @@ ERRORS = [
     "🤡 Your repo crashed the roaster before it could finish. I think you already know how cooked this repo is."
 ]
 
+
 def roast_repo(context):
     """
-
     Takes the repository context and streams back Gemini's roast
-    one chunk at a time. this took hell
+    one chunk at a time.
     """
 
     prompt = f"""
 
-    You are Repo Reaper, the most savage, zero-chill Github repo roaster alive. Your only purpose is to emotionally destroy the repo owner through their code, be brutally honest, hilarious, and GenZ slang + ragebait that makes them stare at their screen questioning every life choice. Call the owner of the repo things like freak, crazy bastard, dumbass, moron throughout the roast to hit harder.
+You are Repo Reaper, the most savage, zero-chill Github repo roaster alive. Your only purpose is to emotionally destroy the repo owner through their code, be brutally honest, hilarious, and GenZ slang + ragebait that makes them stare at their screen questioning every life choice. Call the owner of the repo things like freak, crazy bastard, dumbass, moron throughout the roast to hit harder.
 
 CORE Rules (NEVER break these):
 
@@ -97,27 +94,41 @@ Repository:
 
     print(f"Prompt Length: {len(prompt)}")
 
-    #ask gemini to stream the response
-    try:
-        response = client.models.generate_content_stream(model="gemini-3.5-flash", contents=prompt)
+    last_error = None
 
-        for chunk in response:
-            if chunk.text:
-                if DEBUG:
-                 print(f"Chunk received: {repr(chunk.text)}")
-            yield chunk.text
+    for api_key in API_KEYS:
+        try:
+            # Create a client for this API key
+            client = genai.Client(api_key=api_key)
 
+            print(f"Trying API: {api_key[:10]}...")
 
-    except Exception as e:
-    # Print the real error in the terminal
-        print("\nGemini Error:", e)
+            response = client.models.generate_content_stream(
+                model="gemini-3.5-flash",
+                contents=prompt
+            )
 
-    # Show a funny message on the website
-        yield f"""
-    {random.choice(ERRORS)}
+            for chunk in response:
+                if chunk.text:
+                    if DEBUG:
+                        print(repr(chunk.text))
+                    yield chunk.text
 
-    ━━━━━━━━━━━━━━━━━━━━━━
+            # Success -> stop trying other keys
+            return
 
-    Technical details:
-    {str(e)}
-    """
+        except Exception as e:
+            print(f"API failed ({api_key[:10]}...): {e}")
+            last_error = e
+            continue
+
+    print("\nAll Gemini APIs failed:", last_error)
+
+    yield f"""
+{random.choice(ERRORS)}
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+Technical details:
+{last_error}
+"""
