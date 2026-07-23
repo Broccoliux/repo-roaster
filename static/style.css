@@ -1,164 +1,165 @@
-body{
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0a0a0a;
-     color: white;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0a0a0a;
+  color: white;
 
 }
 
-main{
-    width: 90%;
-    max-width: 900px;
-    margin: auto;
-    padding-top: 80px;
+main {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  padding-top: 80px;
 }
 
-.hero{
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-input{
-    padding: 14px;
-    font-size: 16px;
+input {
+  padding: 14px;
+  font-size: 16px;
 }
 
-button{
-    width: 130px;
-    padding: 15px;
-    cursor: pointer;
+button {
+  width: 130px;
+  padding: 15px;
+  cursor: pointer;
 
 }
 
 .roast-card {
-    background: #111;
-    border: 1px solid #2a2a2a;
-    border-left: 4px solid #4aff03;
-    border-radius: 10px;
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-left: 4px solid #4aff03;
+  border-radius: 10px;
 
-    padding: 18px;
-    margin: 18px 0;
+  padding: 18px;
+  margin: 18px 0;
 
-    line-height: 1.7;
-    font-size: 15px;
+  line-height: 1.7;
+  font-size: 15px;
 
-    white-space: pre-wrap;
-    word-wrap: break-word;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 
-    transition: 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .roast-card:hover {
-    transform: translateY(-2px);
-    border-color: #3700ff;
+  transform: translateY(-2px);
+  border-color: #3700ff;
 }
 
 .roast-card:first-line {
-    font-size: 18px;
-    font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
 }
 
-.repo-stats{
-    display: flex;
-    gap: 14px;
-    margin: 22px 0;
-    flex-wrap: wrap;
+.repo-stats {
+  display: flex;
+  gap: 14px;
+  margin: 22px 0;
+  flex-wrap: wrap;
 }
 
-.stat-card{
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
-    background: #111;
-    border: 1px solid #252525;
-    border-radius: 10px;
+  background: #111;
+  border: 1px solid #252525;
+  border-radius: 10px;
 
-    padding: 14px 18px;
-    min-width: 170px;
+  padding: 14px 18px;
+  min-width: 170px;
 
-    transition: .2s ease;
+  transition: .2s ease;
 }
 
-.stat-card strong{
+.stat-card strong {
   font-size: 15px;
   color: #fff;
 }
+
 .stat-card:hover {
-    transform: translateY(-2px);
-    border-color: #ff7b00;
+  transform: translateY(-2px);
+  border-color: #ff7b00;
 
 }
 
-.stat-card span{
-    display: block;
-    color: #888;
-    margin-bottom: 3px;
+.stat-card span {
+  display: block;
+  color: #888;
+  margin-bottom: 3px;
 }
 
 
 
 .progress-container {
-    width: 100%;
-    height: 14px;
-    background: #222;
-    border-radius: 999px;
-    overflow: hidden;
-    margin-top: 20px;
+  width: 100%;
+  height: 14px;
+  background: #222;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 20px;
 }
 
-.progress-bar{
-    width: 0%;
-    height: 100%;
-    background: #26da0e;
-    transition: width .25s  ease;
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: #26da0e;
+  transition: width .25s ease;
 }
 
-#progress-percent{
-    margin-top: 10px;
-    color: #26da0e;
-    font-weight: bold;
+#progress-percent {
+  margin-top: 10px;
+  color: #26da0e;
+  font-weight: bold;
 }
 
-#loading-text{
-    margin-bottom: 15px;
+#loading-text {
+  margin-bottom: 15px;
 }
 
-#copy-btn{
+#copy-btn {
 
-    padding:12px 22px;
-    background:#26da0e;
-    color:#000;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-    transition:.2s;
+  padding: 12px 22px;
+  background: #26da0e;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: .2s;
 }
 
-#copy-btn:hover{
+#copy-btn:hover {
 
-    transform:translateY(-2px);
-    opacity:.9;
+  transform: translateY(-2px);
+  opacity: .9;
 }
 
-#download-btn:hover{
+#download-btn:hover {
   transform: translateY(-2px);
   background: #444;
 }
 
-.roast-actions{
-  display:flex;
+.roast-actions {
+  display: flex;
   gap: 12px;
-  margin:24px 0;
+  margin: 24px 0;
 }
 
 .roast-actions button {
   padding: 10px 18px;
   border-radius: 8px;
   border: none;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 #download-btn {
@@ -166,22 +167,142 @@ button{
   color: #fff;
 }
 
-.repo-header{
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-bottom: 25px;
+.repo-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 25px;
 }
 
-.repo-avatar{
-    width:72px;
-    height: 72px;
-    border-radius: 50%;
-    border: 3px solid #26da0e;
-    object-fit: cover;
+.repo-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid #26da0e;
+  object-fit: cover;
 }
 
-.repo-header p{
-    margin: 4px 0 0;
-    color:#888;
+.repo-header p {
+  margin: 4px 0 0;
+  color: #888;
+}
+
+.warning-overlay {
+
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, .85);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+}
+
+.warning-box {
+
+  width: 90%;
+  max-width: 620px;
+
+  background: #111;
+
+  border: 2px solid #26da0e;
+  border-radius: 14px;
+
+  padding: 35px;
+}
+
+.warning-box h1 {
+
+  margin-top: 0;
+  color: #26da0e;
+}
+
+.warning-box ul {
+
+  margin: 20px 0;
+  line-height: 1.8;
+}
+
+.agree-box {
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.warning-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+#leave-btn {
+
+  background: #333;
+  color: black;
+  font-weight: bold;
+}
+
+#accept-btn {
+  background: #26da0e;
+  color: black;
+  font-weight: bold;
+}
+
+.hidden {
+
+  display: none;
+}
+
+
+#jumpscare {
+
+  position: fixed;
+  inset: 0;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  background: #000;
+  z-index: 999999;
+}
+
+#monster {
+
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transform: scale(.7);
+  transition: transform .15s ease;
+}
+
+#jumpscare.active {
+
+  display: flex;
+}
+
+#jumpscare.active #monster {
+  transform: scale(1.15);
+}
+
+@keyframes shake{
+
+0%{transform:translate(0)}
+20%{transform:translate(-10px,5px)}
+40%{transform:translate(10px,-5px)}
+60%{transform:translate(-7px,4px)}
+80%{transform:translate(8px,-2px)}
+100%{transform:translate(0)}
+
+}
+
+body.shake{
+
+    animation:shake .25s linear 3;
 }
