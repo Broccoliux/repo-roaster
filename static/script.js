@@ -3,13 +3,61 @@ const button = document.getElementById("roast-btn");
 const result = document.getElementById("result");
 const defaultButtonText = button.innerHTML;
 
+const modal = document.getElementById("warning-modal");
+const acceptBtn = document.getElementById("accept-btn");
+const leaveBtn = document.getElementById("leave-btn");
+const agree = document.getElementById("agree-checkbox");
+
+if (localStorage.getItem("waiverAccepted")) {
+  modal.classList.add("hidden");
+}
+
+agree.addEventListener("change", () => {
+  acceptBtn.disabled = !agree.checked;
+});
+
+acceptBtn.addEventListener("click", () => {
+
+  playSound(sounds.cook);
+
+  setTimeout(() => {
+
+    localStorage.setItem("waiverAccepted", "true");
+    modal.classList.add("hidden");
+
+  }, 1000);
+
+});
+
+leaveBtn.addEventListener("click", () => {
+  window.location.href = "https://google.com";
+});
+
+const sounds = {
+  cook: new Audio("/static/audio/cook.mp3"),
+  death: new Audio("/static/audio/death.mp3"),
+  scream: new Audio("/static/audio/scream.mp3"),
+  jumpscare: new Audio("/static/audio/JumpScare.mp3")
+};
+let jumpscareTriggered = false;
+
+
+function playSound(sound) {
+
+  if (!sound) return;
+  sound.pause();
+  sound.currentTime = 0;
+  sound.play().catch(() => { });
+}
 
 console.log("NEW SCRIPT LOADED");
 
 
 button.addEventListener("click", async () => {
-  speechSynthesis.cancel();
 
+  speechSynthesis.cancel();
+  playSound(sounds.death);
+  await new Promise(resolve => setTimeout(resolve, 1000));
   const url = input.value.trim();
 
 
@@ -112,65 +160,59 @@ button.addEventListener("click", async () => {
     // drawing the repo info
 
     result.innerHTML = `
-          <div> class = "repo-header">
+    <div class="repo-header">
 
-              <img
-                  class="repo-avatar"
-                  src= "${data.repo.avatar}"
-                  alt = "avatar"
-              >
-              <div>
+        <img
+            class="repo-avatar"
+            src="${data.repo.avatar}"
+            alt="avatar"
+        >
+
+        <div>
             <h2>📦 ${data.repo.name}</h2>
-            <p?@${data.repo.owner}L</p>
-              </div>
-          </div>
+            <p>@${data.repo.owner}</p>
+        </div>
 
-            <div class="repo-stats">
+    </div>
 
-                <div class="stat-card">
-                    <span>👤</span>
-                    <div>
-                        <small>Owner</small>
-                        <strong>${data.repo.owner}</strong>
-                    </div>
-                </div>
+    <div class="repo-stats">
 
-                <div class="stat-card">
-                    <span>⭐</span>
-                    <div>
-                        <small>Stars</small>
-                        <strong>${data.repo.stars}</strong>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <span>🍴</span>
-                    <div>
-                        <small>Forks</small>
-                        <strong>${data.repo.forks}</strong>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <span>💻</span>
-                    <div>
-                        <small>Language</small>
-                        <strong>${data.repo.language || "Unknown"}</strong>
-                    </div>
-                </div>
-
+        <div class="stat-card">
+            <span>⭐</span>
+            <div>
+                <small>Stars</small>
+                <strong>${data.repo.stars}</strong>
             </div>
+        </div>
 
-            <hr>
-
-            <div class="roast-actions">
-                <button id="copy-btn">Copy Roast</button>
-                <button id="download-btn">Download Roast</button>
-                <button id="listen-btn">🔊 Listen Roast</button>
+        <div class="stat-card">
+            <span>🍴</span>
+            <div>
+                <small>Forks</small>
+                <strong>${data.repo.forks}</strong>
             </div>
+        </div>
 
-            <div id="roast-output"></div>
-        `;
+        <div class="stat-card">
+            <span>💻</span>
+            <div>
+                <small>Language</small>
+                <strong>${data.repo.language || "Unknown"}</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="roast-actions">
+        <button id="copy-btn">Copy Roast</button>
+        <button id="download-btn">Download Roast</button>
+        <button id="listen-btn">🔊 Listen Roast</button>
+    </div>
+
+    <div id="roast-output"></div>
+`;
 
     //stram Roast
 
@@ -245,12 +287,18 @@ button.addEventListener("click", async () => {
     downloadBtn.style.display = "inline-block";
     listenBtn.style.display = "inline-block";
 
+    jumpscareTriggered = false;
+    window.addEventListener("scroll", handleJumpScare);
+
     copyBtn.addEventListener("click", async () => {
 
       try {
 
         await navigator.clipboard.writeText(roast);
-        copyBtn.innerHTML = "✅ Copied!";
+        playSound(sounds.scream);
+        setTimeout(() => {
+          copyBtn.innerHTML = "✅ Copied!";
+        }, 150);
 
         setTimeout(() => {
           copyBtn.innerHTML = "Copy Roast";
@@ -398,4 +446,32 @@ function renderRoast(roast) {
             </div>
         `)
     .join("");
+}
+
+function handleJumpScare() {
+
+  if (jumpscareTriggered) return;
+  const scroll = window.scrollY + window.innerHeight;
+  const height = document.documentElement.scrollHeight;
+  if (scroll / height > 0.72) {
+    showJumpScare();
+    window.removeEventListener("scroll", handleJumpScare);
+  }
+}
+
+function showJumpScare() {
+
+  jumpscareTriggered = true;
+  const scare = document.getElementById("jumpscare");
+  if (!scare) return;
+  scare.classList.add("active");
+
+  document.body.classList.add("shake");
+  sounds.jumpscare.currentTime = 0;
+  sounds.jumpscare.play();
+
+  setTimeout(() => {
+    scare.classList.remove("active");
+    document.body.classList.remove("shake");
+  }, 1500);
 }
