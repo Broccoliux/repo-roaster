@@ -3,7 +3,7 @@ from google import genai
 import os
 import random
 
-
+DEBUG=False
 #load variables from the .env file
 
 load_dotenv()
@@ -93,17 +93,11 @@ Repository:
 {context}
 """
 
-    # useful for debugging prompt size'
-    print(f"Prompt Lenght: {len(prompt)}")
+    print(f"Prompt Length: {len(prompt)}")
 
     #ask gemini to stream the response
     try:
-        response = client.models.generate_content_stream(
-            model="gemini-3.5-flash",
-            contents=prompt
-    )
-        
-        DEBUG = False
+        response = client.models.generate_content_stream(model="gemini-3.5-flash", contents=prompt)
 
         for chunk in response:
             if chunk.text:
@@ -111,7 +105,7 @@ Repository:
                  print(f"Chunk received: {repr(chunk.text)}")
             yield chunk.text
 
-    
+
     except Exception as e:
     # Print the real error in the terminal
         print("\nGemini Error:", e)
