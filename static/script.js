@@ -442,7 +442,9 @@ function renderRoast(roast) {
   return sections
     .map(section => `
             <div class="roast-card">
-                ${section.replace(/\n/g, "<br>")}
+                ${section
+        .replace(/^## (.*)$/m, "<h2>$1</h2>")
+        .replace(/\n/g, "<br>")}
             </div>
         `)
     .join("");
