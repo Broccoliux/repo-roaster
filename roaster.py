@@ -8,11 +8,13 @@ DEBUG=False
 
 load_dotenv()
 
-#gemini client
+API_KEYS = [
+    os.getenv("GEMINI_API_KEY_1"),
+    os.getenv("GEMINI_API_KEY_2"),
+    os.getenv("GEMINI_API_KEY_3"),
+]
 
-client = genai.Client(
-    api_key=os.getenv("GEMINI_API_KEY")
-)
+API_KEYS = [key for key in API_KEYS if key]
 
 # Funny messages shown when Gemini dies.
 # Instead of showing Python errors to the user,
