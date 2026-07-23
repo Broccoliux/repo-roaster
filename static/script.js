@@ -112,7 +112,18 @@ button.addEventListener("click", async () => {
     // drawing the repo info
 
     result.innerHTML = `
+          <div> class = "repo-header">
+
+              <img
+                  class="repo-avatar"
+                  src= "${data.repo.avatar}"
+                  alt = "avatar"
+              >
+              <div>
             <h2>📦 ${data.repo.name}</h2>
+            <p?@${data.repo.owner}L</p>
+              </div>
+          </div>
 
             <div class="repo-stats">
 
@@ -388,4 +399,3 @@ function renderRoast(roast) {
         `)
     .join("");
 }
-
