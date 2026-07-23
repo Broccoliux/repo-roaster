@@ -1286,3 +1286,17 @@ its next day and github is giving me hell in fetching matadata
 greter
 .ohh its working,
 
+now gonna make the some more UI fetures
+at first i am going to add the feature so the avatoar on github will also renfder on page.
+
+now i am going to add and agrement where when the user will open the web pagr, he or she will get the caution msg that this can harm there feelingm if u still agee u agree that u take full responsibilty.
+
+
+i was trying to make the card, but it is no working. idk why, time to debug this.
+
+oky now it is working.,
+
+
+i have completed it now, now its time to deploy it,
+
+onw thing that i haev used AI in this, somewhere like 27-33%, i had no choise to use cuz i am noob.
