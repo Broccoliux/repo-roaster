@@ -57,7 +57,7 @@ def repo():
     })
 
 
-#stream endpoint
+# roast stream endpoint
 
 # javaScript calls this Scnd
 
@@ -114,5 +114,3 @@ def stream():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-utiudgf
