@@ -437,7 +437,7 @@ function isValidGitHubUrl(url) {
 function renderRoast(roast) {
   const sections = roast
     .trim()
-    .split(/\n(?=[💀📂🐍📝🤡☠️])/);
+    .split(/\n(?=## )/);
 
   return sections
     .map(section => `
