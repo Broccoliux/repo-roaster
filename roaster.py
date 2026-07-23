@@ -98,43 +98,26 @@ Repository:
     print(f"Prompt Length: {len(prompt)}")
 
     #ask gemini to stream the response
-try:
-    last_error = None
+    try:
+        response = client.models.generate_content_stream(model="gemini-3.5-flash", contents=prompt)
 
-    for api_key in API_KEYS:
-        try:
-            client = genai.Client(api_key=api_key)
+        for chunk in response:
+            if chunk.text:
+                if DEBUG:
+                 print(f"Chunk received: {repr(chunk.text)}")
+            yield chunk.text
 
-            response = client.models.generate_content_stream(
-                model="gemini-3.5-flash"
-                contents=prompt
-            )
 
-            for chunk in response:
-                if chunk.text:
-                    if DEBUG:
-                        print(f"Chunk received: {repr(chunk.text)}")
-                    yield chunk.text
+    except Exception as e:
+    # Print the real error in the terminal
+        print("\nGemini Error:", e)
 
-            # Success → stop here
-            return
+    # Show a funny message on the website
+        yield f"""
+    {random.choice(ERRORS)}
 
-        except Exception as e:
-            print(f"API failed ({api_key[:10]}...): {e}")
-            last_error = e
-            continue
+    ━━━━━━━━━━━━━━━━━━━━━━
 
-    # All APIs failed
-    raise last_error
-
-except Exception as e:
-    print("\nAll Gemini APIs failed:", e)
-
-    yield f"""
-{random.choice(ERRORS)}
-
-━━━━━━━━━━━━━━━━━━━━━━
-
-Technical details:
-{str(e)}
-"""
+    Technical details:
+    {str(e)}
+    """
