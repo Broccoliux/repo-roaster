@@ -31,9 +31,9 @@ Paste a GitHub repo URL, and Repo Reaper reads the codebase before generating br
 - GitHub REST API
 
 ### FRONTEND
--HTML
--CSS
--Vanilla JavaScripts
+- HTML
+- CSS
+- Vanilla JavaScripts
 
 ---
 
