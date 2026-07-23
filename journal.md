@@ -1282,4 +1282,7 @@ ok bro, its working i know voice is not too good but still it works
 
 now the google modle is down lol.
 
-hdggfghgfgfhggfgghgfgdtgfgghfggfffgdffdsfdsdffdfdfddsfgdtffdfgfgdsddsaasfgfghgfgfgfhgewhjgfdfddssddsdfyhbz
+its next day and github is giving me hell in fetching matadata
+greter
+.ohh its working,
+
