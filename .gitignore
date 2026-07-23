@@ -1,3 +1,4 @@
-.env
-ven/
+venv/
 __pycache__/
+.vscode/
+.env
