@@ -66,6 +66,7 @@ def fetch_repo_data(url):
         "stars": data["stargazers_count"],
         "forks": data["forks_count"],
         "owner": data["owner"]["login"],
+        
     }
 
     return repo_info
@@ -276,7 +277,7 @@ def build_repo_context(url):
             important_files
         )
 
-        for file, conftent in contents:
+        for file, content in contents:
 
             print(file)
 
