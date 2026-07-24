@@ -1303,3 +1303,7 @@ onw thing that i haev used AI in this, somewhere like 27-33%, i had no choise to
 
 
 ohh man finally compled the project
+
+there was API issue that api was soo un consistent, i haev fixed it now.
+
+let see how it works now
